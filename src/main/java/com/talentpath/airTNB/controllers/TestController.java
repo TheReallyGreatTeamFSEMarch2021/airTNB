@@ -20,5 +20,5 @@ public class TestController {
     }
 
     @PostMapping("/add")
-    public Test addQuestion(@RequestBody Test toAdd){return service.addTest(toAdd);}
+    public Test addTest(@RequestBody Test toAdd){return service.addTest(toAdd);}
 }
