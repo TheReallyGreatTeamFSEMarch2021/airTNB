@@ -20,10 +20,10 @@ public class Listing {
 
     private String subTitle;
 
-    @Digits(integer=3, fraction=6)
+    @Digits(integer = 3, fraction = 6)
     private BigDecimal longitude;
 
-    @Digits(integer=3, fraction=6)
+    @Digits(integer = 3, fraction = 6)
     private BigDecimal latitude;
 
     private String state;
@@ -154,4 +154,9 @@ public class Listing {
     public void setLocation(Location location) {
         this.location = location;
     }
+    @OneToOne(mappedBy = "listing",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            optional = false)
+    private ThingToKnow thingToKnow;
 }
