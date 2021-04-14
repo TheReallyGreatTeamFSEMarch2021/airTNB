@@ -9,17 +9,14 @@ import javax.validation.constraints.NotBlank;
 @Table(name="reviews")
 public class Review {
 
-    // Todo:
-    // Add Equals & Hash Code once Host Model has been set up
-
     @Id
     @GeneratedValue
     private Integer id;
 
-    //    @JsonIgnore
-    //    @ManyToOne(fetch= FetchType.LAZY)
-    //    @NotBlank
-    //    private Host host;
+    @JsonIgnore
+    @ManyToOne(fetch= FetchType.LAZY)
+    @NotBlank
+    private Host host;
 
     private String title;
 
@@ -39,7 +36,7 @@ public class Review {
 
     public Review(Review review){
         this.id = review.id;
-        //this.host = review.host;
+        this.host = review.host;
         this.title = review.title;
         this.content = review.content;
         this.starValue = review.starValue;
@@ -53,13 +50,13 @@ public class Review {
         this.id = id;
     }
 
-//    public Host getHost(){
-//        return host;
-//    }
-//
-//    public void setHost(Host host){
-//        this.host = host;
-//    }
+    public Host getHost(){
+        return host;
+    }
+
+    public void setHost(Host host){
+        this.host = host;
+    }
 
     public String getTitle() {
         return title;
@@ -83,5 +80,29 @@ public class Review {
 
     public void setStarValue(Integer starValue) {
         this.starValue = starValue;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Review review = (Review) o;
+
+        if (id != null ? !id.equals(review.id) : review.id != null) return false;
+        if (host != null ? !host.equals(review.host) : review.host != null) return false;
+        if (title != null ? !title.equals(review.title) : review.title != null) return false;
+        if (content != null ? !content.equals(review.content) : review.content != null) return false;
+        return starValue != null ? starValue.equals(review.starValue) : review.starValue == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (host != null ? host.hashCode() : 0);
+        result = 31 * result + (title != null ? title.hashCode() : 0);
+        result = 31 * result + (content != null ? content.hashCode() : 0);
+        result = 31 * result + (starValue != null ? starValue.hashCode() : 0);
+        return result;
     }
 }
