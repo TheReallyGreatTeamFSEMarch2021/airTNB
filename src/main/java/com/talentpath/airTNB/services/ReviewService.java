@@ -18,8 +18,8 @@ public class ReviewService {
 
     public List<Review> getAllReviews(){return reviewRepo.findAll();}
 
-    public List<Review> getByHost(Integer hostId){
-        return reviewRepo.findByHostId(hostId);
+    public List<Review> getByListing(Integer listingId){
+        return reviewRepo.findByListingId(listingId);
     }
 
     public Review getById(Integer id) throws NullReviewException {

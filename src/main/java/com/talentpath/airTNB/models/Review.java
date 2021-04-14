@@ -10,13 +10,13 @@ import javax.validation.constraints.NotBlank;
 public class Review {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @JsonIgnore
     @ManyToOne(fetch= FetchType.LAZY)
     @NotBlank
-    private Host host;
+    private Listing listing;
 
     private String title;
 
@@ -36,7 +36,7 @@ public class Review {
 
     public Review(Review review){
         this.id = review.id;
-        this.host = review.host;
+        this.listing = review.listing;
         this.title = review.title;
         this.content = review.content;
         this.starValue = review.starValue;
@@ -50,12 +50,12 @@ public class Review {
         this.id = id;
     }
 
-    public Host getHost(){
-        return host;
+    public Listing getListing(){
+        return listing;
     }
 
-    public void setHost(Host host){
-        this.host = host;
+    public void setListing(Listing listing){
+        this.listing = listing;
     }
 
     public String getTitle() {
@@ -90,7 +90,7 @@ public class Review {
         Review review = (Review) o;
 
         if (id != null ? !id.equals(review.id) : review.id != null) return false;
-        if (host != null ? !host.equals(review.host) : review.host != null) return false;
+        if (listing != null ? !listing.equals(review.listing) : review.listing != null) return false;
         if (title != null ? !title.equals(review.title) : review.title != null) return false;
         if (content != null ? !content.equals(review.content) : review.content != null) return false;
         return starValue != null ? starValue.equals(review.starValue) : review.starValue == null;
@@ -99,7 +99,7 @@ public class Review {
     @Override
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (host != null ? host.hashCode() : 0);
+        result = 31 * result + (listing != null ? listing.hashCode() : 0);
         result = 31 * result + (title != null ? title.hashCode() : 0);
         result = 31 * result + (content != null ? content.hashCode() : 0);
         result = 31 * result + (starValue != null ? starValue.hashCode() : 0);

@@ -8,9 +8,12 @@ import java.util.List;
 public class Host {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @OneToMany(mappedBy = "host", cascade = CascadeType.ALL)
-    private List<Review> reviews;
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name="listing_id", nullable = false)
+    private Listing listing;
+
+
 }

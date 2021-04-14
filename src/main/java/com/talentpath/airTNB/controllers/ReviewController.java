@@ -23,7 +23,7 @@ public class ReviewController {
 
     @GetMapping("/getByHost/{host}")
     public List<Review> getReviewsByHost(@PathVariable Integer hostId){
-        return service.getByHost(hostId);
+        return service.getByListing(hostId);
     }
 
     @GetMapping("/getById/{id}")
