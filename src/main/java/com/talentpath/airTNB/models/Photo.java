@@ -15,12 +15,12 @@ public class Photo {
     @NotBlank
     private String url;
 
-    /*
+
     @JsonIgnore
     @ManyToOne(fetch=FetchType.LAZY)
     @NotBlank
     private Listing listing;
-    */
+
 
     public Photo(){
     }

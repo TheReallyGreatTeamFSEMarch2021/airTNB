@@ -22,7 +22,7 @@ public class PhotoController {
 
     @GetMapping("/getByListingId/{listingId}")
     public List<Photo> getByListingId(@PathVariable Integer listingId){
-        return photoService.getByListingId();
+        return photoService.getByListingId(listingId);
     }
 
 }

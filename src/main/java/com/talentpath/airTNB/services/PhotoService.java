@@ -16,6 +16,7 @@ public class PhotoService {
         return photoRepository.findAll();
     }
 
-    public List<Photo> getByListingId() {
+    public List<Photo> getByListingId(Integer listingId) {
+        return photoRepository.findAllByListingId(listingId);
     }
 }

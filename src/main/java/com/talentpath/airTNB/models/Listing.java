@@ -34,6 +34,9 @@ public class Listing {
     @OneToMany(mappedBy = "listing", cascade = CascadeType.ALL)
     private List<Review> reviews;
 
+    @OneToMany(mappedBy = "listing", cascade = CascadeType.ALL)
+    private List<Photo>  photos;
+
     public Listing(String title, String subTitle, BigDecimal longitude, BigDecimal latitude, String state, String city, Host host, List<Review> reviews){
         this.title = title;
         this.subTitle = subTitle;
