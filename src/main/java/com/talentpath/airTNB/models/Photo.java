@@ -15,13 +15,42 @@ public class Photo {
     @NotBlank
     private String url;
 
-
     @JsonIgnore
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL,
+                fetch=FetchType.LAZY)
     @NotBlank
     private Listing listing;
 
-
     public Photo(){
+    }
+
+    public Photo(int id, String url, Listing listing) {
+        this.id = id;
+        this.url = url;
+        this.listing = listing;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public Listing getListing() {
+        return listing;
+    }
+
+    public void setListing(Listing listing) {
+        this.listing = listing;
     }
 }

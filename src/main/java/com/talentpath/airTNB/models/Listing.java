@@ -1,5 +1,7 @@
 package com.talentpath.airTNB.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.Digits;
 import java.math.BigDecimal;
@@ -35,9 +37,10 @@ public class Listing {
     private List<Review> reviews;
 
     @OneToMany(mappedBy = "listing", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Photo>  photos;
 
-    public Listing(String title, String subTitle, BigDecimal longitude, BigDecimal latitude, String state, String city, Host host, List<Review> reviews){
+    public Listing(String title, String subTitle, BigDecimal longitude, BigDecimal latitude, String state, String city, Host host, List<Review> reviews, List<Photo> photos){
         this.title = title;
         this.subTitle = subTitle;
         this.longitude = longitude;
@@ -46,6 +49,7 @@ public class Listing {
         this.city = city;
         this.host = host;
         this.reviews = reviews;
+        this.photos = photos;
     }
 
     public Listing(){
@@ -121,5 +125,13 @@ public class Listing {
 
     public void setReviews(List<Review> reviews) {
         this.reviews = reviews;
+    }
+
+    public List<Photo> getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(List<Photo> photos) {
+        this.photos = photos;
     }
 }

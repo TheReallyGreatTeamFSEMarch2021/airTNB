@@ -19,4 +19,8 @@ public class PhotoService {
     public List<Photo> getByListingId(Integer listingId) {
         return photoRepository.findAllByListingId(listingId);
     }
+
+    public Photo addPhoto(Photo toAdd) {
+        return photoRepository.saveAndFlush(toAdd);
+    }
 }
