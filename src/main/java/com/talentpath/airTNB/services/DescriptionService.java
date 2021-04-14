@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class DescriptionService {
-    //@Autowired
-    //DescriptionRepository repo;
+    @Autowired
+    DescriptionRepository repo;
 
     public Map<String,Integer> testService(Integer id) {
         Map<String, Integer> test = new HashMap<String,Integer>();
@@ -21,6 +21,6 @@ public class DescriptionService {
     }
     public Description getDescription(Integer id){
         // Use the ID to get the relevant data
-        return new Description();
+        return new Description("HELLO");
     }
 }
