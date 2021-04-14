@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface ReviewRepository extends JpaRepository<Review, Integer> {
 
-    //List<Review> findReviewsForHostId(Integer hostId);
+    List<Review> findByHostId(Integer hostId);
 
     @Modifying
     @Query(

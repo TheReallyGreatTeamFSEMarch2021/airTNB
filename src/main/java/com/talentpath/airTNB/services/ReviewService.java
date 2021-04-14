@@ -18,9 +18,9 @@ public class ReviewService {
 
     public List<Review> getAllReviews(){return reviewRepo.findAll();}
 
-//    public List<Review> getByHost(Integer hostId){
-//        return reviewRepo.findReviewsForHost(Integer hostId);
-//    }
+    public List<Review> getByHost(Integer hostId){
+        return reviewRepo.findByHostId(hostId);
+    }
 
     public Review getById(Integer id) throws NullReviewException {
         Optional<Review> review = reviewRepo.findById(id);

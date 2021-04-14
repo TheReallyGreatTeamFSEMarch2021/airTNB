@@ -6,11 +6,11 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 @Entity
+@Table(name="reviews")
 public class Review {
 
     // Todo:
     // Add Equals & Hash Code once Host Model has been set up
-
 
     @Id
     @GeneratedValue
@@ -25,10 +25,16 @@ public class Review {
 
     private String content;
 
-    private Integer starvalue;
+    private Integer starValue;
 
     public Review(){
 
+    }
+
+    public Review(String title, String content, Integer starValue){
+        this.title = title;
+        this.content = content;
+        this.starValue = starValue;
     }
 
     public Review(Review review){
@@ -36,7 +42,7 @@ public class Review {
         //this.host = review.host;
         this.title = review.title;
         this.content = review.content;
-        this.starvalue = review.starvalue;
+        this.starValue = review.starValue;
     }
 
     public Integer getId() {
@@ -71,11 +77,11 @@ public class Review {
         this.content = content;
     }
 
-    public Integer getStarvalue() {
-        return starvalue;
+    public Integer getStarValue() {
+        return starValue;
     }
 
-    public void setStarvalue(Integer starvalue) {
-        this.starvalue = starvalue;
+    public void setStarValue(Integer starValue) {
+        this.starValue = starValue;
     }
 }
