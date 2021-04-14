@@ -27,7 +27,8 @@ public class Listing {
 
     private String city;
 
-    @OneToOne(mappedBy = "listing", cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="host_id")
     private Host host;
 
     @OneToMany(mappedBy = "listing", cascade = CascadeType.ALL)
