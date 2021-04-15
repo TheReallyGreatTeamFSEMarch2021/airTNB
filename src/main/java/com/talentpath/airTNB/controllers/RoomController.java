@@ -21,6 +21,11 @@ public class RoomController {
         return roomService.getAllRooms();
     }
 
+    @GetMapping("/getByListingId/{listingId}")
+    public List<Room> getByListingId(@PathVariable Integer listingId){
+        return roomService.getByListingId(listingId);
+    }
+
     @PostMapping("/add/{listingId}")
     public Room addRoom(@PathVariable Integer listingId, @RequestBody Room toAdd) throws NullListingException {
         toAdd = roomService.attachListing(toAdd, listingId);

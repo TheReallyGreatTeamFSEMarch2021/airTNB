@@ -20,7 +20,9 @@ public class RoomService {
     public List<Room> getAllRooms(){
         return roomRepo.findAll();
     }
-
+    public List<Room> getByListingId(Integer listingId) {
+        return roomRepo.findAllByListingId(listingId);
+    }
     public Room addRoom(Room toAdd){
         return roomRepo.saveAndFlush(toAdd);
     }
