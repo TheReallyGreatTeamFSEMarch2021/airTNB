@@ -11,16 +11,14 @@ public class Description {
         @Id
         @GeneratedValue
         private Integer id;
-        private String title;
-        public Description(String title) {
-                this.title = title;
-        }
-        // Get number of reviews
-        // Location
+        private String title; // Can this be grabbed from an existing table?
+        private String hostEmail;
+        private String smallDescription;
+        private String hostImageURL;
+        private String location;
+        private String cancellationDate;
+        private String typeOfPlace;
+        // Count number of Reviews from other table
         // Get [Type of Place] + " in " + [City] + "hosted by "+ [host]
-        // Get Host image
-        // Get Cancellation date if applicable
-        // Get Brief description
-        // Contact host email
-
+        
 }
