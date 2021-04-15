@@ -14,6 +14,8 @@ public class RuleList {
     private Boolean petsAllowed;
     private Boolean childSuitable;
     private Boolean partiesAllowed;
+
+    @Enumerated(EnumType.STRING)
     private CheckInMethod checkInMethod;
 
 
