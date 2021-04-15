@@ -16,19 +16,19 @@ public class PhotoService {
     @Autowired
     PhotoRepository photoRepository;
 
-    public List<Photo> getAllPhotos() {
+    public List<Photo> getAllPhotos(){
         return photoRepository.findAll();
     }
 
-    public List<Photo> getByListingId(Integer listingId) {
+    public List<Photo> getByListingId(Integer listingId){
         return photoRepository.findAllByListingId(listingId);
     }
 
-    public Photo addPhoto(Photo toAdd) {
+    public Photo addPhoto(Photo toAdd){
         return photoRepository.saveAndFlush(toAdd);
     }
-
-    public Photo attachListing(Photo photo, Integer listingId) throws NullListingException {
+    
+    public Photo attachListing(Photo photo, Integer listingId) throws NullListingException{
         photo.setListing(listingService.getListingById(listingId));
         return photo;
     }
