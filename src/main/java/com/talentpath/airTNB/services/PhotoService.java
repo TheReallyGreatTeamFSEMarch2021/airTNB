@@ -27,7 +27,7 @@ public class PhotoService {
     public Photo addPhoto(Photo toAdd){
         return photoRepository.saveAndFlush(toAdd);
     }
-    
+
     public Photo attachListing(Photo photo, Integer listingId) throws NullListingException{
         photo.setListing(listingService.getListingById(listingId));
         return photo;
