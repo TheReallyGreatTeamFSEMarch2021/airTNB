@@ -1,10 +1,6 @@
 package com.talentpath.airTNB.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.talentpath.airTNB.exceptions.NullListingException;
-import com.talentpath.airTNB.services.ListingService;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
@@ -21,7 +17,6 @@ public class Photo {
     @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL,
                 fetch=FetchType.LAZY)
-
     private Listing listing;
 
     public Photo(){
