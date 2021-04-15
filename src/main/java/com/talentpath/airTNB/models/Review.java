@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.time.LocalDate;
 
 @Entity
 @Table(name="reviews")
@@ -24,22 +25,22 @@ public class Review {
 
     private Integer starValue;
 
+    private LocalDate date;
+
+    private String userFirstName;
+
     public Review(){
 
     }
 
-    public Review(String title, String content, Integer starValue){
+    public Review(Integer id, @NotBlank Listing listing, String title, String content, Integer starValue, LocalDate date, String userFirstName) {
+        this.id = id;
+        this.listing = listing;
         this.title = title;
         this.content = content;
         this.starValue = starValue;
-    }
-
-    public Review(Review review){
-        this.id = review.id;
-        this.listing = review.listing;
-        this.title = review.title;
-        this.content = review.content;
-        this.starValue = review.starValue;
+        this.date = date;
+        this.userFirstName = userFirstName;
     }
 
     public Integer getId() {
@@ -82,6 +83,22 @@ public class Review {
         this.starValue = starValue;
     }
 
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public String getUserFirstName() {
+        return userFirstName;
+    }
+
+    public void setUserFirstName(String userFirstName) {
+        this.userFirstName = userFirstName;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -93,7 +110,9 @@ public class Review {
         if (listing != null ? !listing.equals(review.listing) : review.listing != null) return false;
         if (title != null ? !title.equals(review.title) : review.title != null) return false;
         if (content != null ? !content.equals(review.content) : review.content != null) return false;
-        return starValue != null ? starValue.equals(review.starValue) : review.starValue == null;
+        if (starValue != null ? !starValue.equals(review.starValue) : review.starValue != null) return false;
+        if (date != null ? !date.equals(review.date) : review.date != null) return false;
+        return userFirstName != null ? userFirstName.equals(review.userFirstName) : review.userFirstName == null;
     }
 
     @Override
@@ -103,6 +122,8 @@ public class Review {
         result = 31 * result + (title != null ? title.hashCode() : 0);
         result = 31 * result + (content != null ? content.hashCode() : 0);
         result = 31 * result + (starValue != null ? starValue.hashCode() : 0);
+        result = 31 * result + (date != null ? date.hashCode() : 0);
+        result = 31 * result + (userFirstName != null ? userFirstName.hashCode() : 0);
         return result;
     }
 }
