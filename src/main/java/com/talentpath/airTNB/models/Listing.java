@@ -2,6 +2,7 @@ package com.talentpath.airTNB.models;
 
 import javax.persistence.*;
 import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotBlank;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -11,6 +12,7 @@ public class Listing {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
 
     private String title;
@@ -32,4 +34,10 @@ public class Listing {
 
     @OneToMany(mappedBy = "listing", cascade = CascadeType.ALL)
     private List<Review> reviews;
+
+    @OneToOne(mappedBy = "listing", cascade = CascadeType.ALL)
+    private Location location;
+
+
+
 }
