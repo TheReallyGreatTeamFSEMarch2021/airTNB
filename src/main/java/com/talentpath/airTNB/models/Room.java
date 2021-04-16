@@ -9,7 +9,7 @@ import java.util.Objects;
 public class Room {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     // type = bedroom/bathroom/common room/bathroom
