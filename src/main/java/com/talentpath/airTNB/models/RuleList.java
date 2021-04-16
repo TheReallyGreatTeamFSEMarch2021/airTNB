@@ -1,5 +1,7 @@
 package com.talentpath.airTNB.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -20,12 +22,13 @@ public class RuleList {
 
 
 
-    @OneToOne(fetch= FetchType.LAZY)
-    @JoinColumn(name="thingstoknow_id")
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="listing_id")
     @MapsId
-    private ThingToKnow thingToKnow;
+    @JsonIgnore
+    private Listing listing;
 
-    public RuleList(String checkInTime, String checkOutTime, Boolean smokingAllowed, Boolean petsAllowed, Boolean childSuitable, Boolean partiesAllowed, CheckInMethod checkInMethod, ThingToKnow thingToKnow) {
+    public RuleList(String checkInTime, String checkOutTime, Boolean smokingAllowed, Boolean petsAllowed, Boolean childSuitable, Boolean partiesAllowed, CheckInMethod checkInMethod, Listing listing) {
         this.checkInTime = checkInTime;
         this.checkOutTime = checkOutTime;
         this.smokingAllowed = smokingAllowed;
@@ -33,7 +36,7 @@ public class RuleList {
         this.childSuitable = childSuitable;
         this.partiesAllowed = partiesAllowed;
         this.checkInMethod = checkInMethod;
-        this.thingToKnow = thingToKnow;
+        this.listing = listing;
     }
 
     public RuleList(){}
@@ -102,11 +105,11 @@ public class RuleList {
         this.checkInMethod = checkInMethod;
     }
 
-    public ThingToKnow getThingToKnow() {
-        return thingToKnow;
+    public Listing getListing() {
+        return listing;
     }
 
-    public void setThingToKnow(ThingToKnow thingToKnow) {
-        this.thingToKnow = thingToKnow;
+    public void setListing(Listing listing) {
+        this.listing = listing;
     }
 }

@@ -51,7 +51,13 @@ public class Listing {
     @JsonIgnore
     private List<Room>  rooms;
 
-    public Listing(String title, String subTitle, BigDecimal longitude, BigDecimal latitude, String state, String city, Host host, List<Review> reviews, List<Photo> photos,ThingToKnow thingToKnow){
+    @OneToOne(mappedBy = "listing",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            optional = false)
+    private RuleList ruleList;
+
+    public Listing(String title, String subTitle, BigDecimal longitude, BigDecimal latitude, String state, String city, Host host, List<Review> reviews, List<Photo> photos){
         this.title = title;
         this.subTitle = subTitle;
         this.longitude = longitude;
@@ -61,7 +67,6 @@ public class Listing {
         this.host = host;
         this.reviews = reviews;
         this.photos = photos;
-        this.thingToKnow = thingToKnow;
     }
 
     public Listing(){
@@ -154,17 +159,4 @@ public class Listing {
     public void setLocation(Location location) {
         this.location = location;
     }
-    public ThingToKnow getThingToKnow() {
-        return thingToKnow;
-    }
-
-    public void setThingToKnow(ThingToKnow thingToKnow) {
-        this.thingToKnow = thingToKnow;
-    }
-
-    @OneToOne(mappedBy = "listing",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY,
-            optional = false)
-    private ThingToKnow thingToKnow;
 }
