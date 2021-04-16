@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotBlank;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -40,9 +41,16 @@ public class Listing {
     @JsonIgnore
     private List<Photo>  photos;
 
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @NotBlank
+    private Location location;
+
     @OneToMany(mappedBy = "listing", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Room>  rooms;
+
 
     public Listing(String title, String subTitle, BigDecimal longitude, BigDecimal latitude, String state, String city, Host host, List<Review> reviews, List<Photo> photos){
         this.title = title;
@@ -137,5 +145,13 @@ public class Listing {
 
     public void setPhotos(List<Photo> photos) {
         this.photos = photos;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
     }
 }
