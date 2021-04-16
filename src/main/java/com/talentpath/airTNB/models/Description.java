@@ -20,5 +20,28 @@ public class Description {
         private String typeOfPlace;
         // Count number of Reviews from other table
         // Get [Type of Place] + " in " + [City] + "hosted by "+ [host]
-        
+        // This is for testing purposes. Will be removed.
+        public Description(String title, String hostEmail, String smallDescription, String hostImageURL, String location, String cancellationDate, String typeOfPlace) {
+                this.title = title;
+                this.hostEmail = hostEmail;
+                this.smallDescription = smallDescription;
+                this.hostImageURL = hostImageURL;
+                this.location = location;
+                this.cancellationDate = cancellationDate;
+                this.typeOfPlace = typeOfPlace;
+        }
+
+        @Override
+        public String toString() {
+                return "Description{" +
+                        "id=" + id +
+                        ", title='" + title + '\'' +
+                        ", hostEmail='" + hostEmail + '\'' +
+                        ", smallDescription='" + smallDescription + '\'' +
+                        ", hostImageURL='" + hostImageURL + '\'' +
+                        ", location='" + location + '\'' +
+                        ", cancellationDate='" + cancellationDate + '\'' +
+                        ", typeOfPlace='" + typeOfPlace + '\'' +
+                        '}';
+        }
 }

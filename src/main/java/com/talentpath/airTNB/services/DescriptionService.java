@@ -2,6 +2,7 @@ package com.talentpath.airTNB.services;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 import com.talentpath.airTNB.daos.DescriptionRepository;
 import com.talentpath.airTNB.models.Description;
@@ -19,8 +20,10 @@ public class DescriptionService {
         test.put("ID", id);
         return test;
     }
-    public Description getDescription(Integer id){
-        // Use the ID to get the relevant data
-        return new Description("HELLO");
+    public Optional<Description> getDescription(Integer id) {
+        return repo.findById(id);
+    }
+    public Description addDescription(Description newDesc) {
+        return repo.saveAndFlush(newDesc);
     }
 }
