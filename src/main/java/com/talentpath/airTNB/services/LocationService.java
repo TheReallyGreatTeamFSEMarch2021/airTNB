@@ -17,20 +17,13 @@ public class LocationService {
 
     public Location getById(Integer id) throws NullLocationException {
         Optional<Location> location = locationRepo.findById(id);
-        if(location.isPresent()){
-            return location.get();
-        }else{
+        if(location.isEmpty()){
             throw new NullLocationException("No location with id: " + id);
+        }else{
+            return location.get();
         }
     };
 
-    public Location getByListingId(Integer listingId) throws NullLocationException{
-        Optional<Location> location = locationRepo.findByListingId(listingId);
-        if(location.isEmpty()){
-            throw new NullLocationException("No Location with listing ID: " + listingId);
-        }
-        return location.get();
-    }
 
 
     public List<Location> getAllLocations() {

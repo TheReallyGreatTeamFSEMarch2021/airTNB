@@ -16,18 +16,17 @@ public class LocationController {
     @Autowired
     LocationService locationServ;
 
-    @GetMapping("/getByListing/{listingId}")
-    public Location getLocation(@PathVariable Integer listingId) throws NullLocationException {
-        return locationServ.getByListingId(listingId);
-    }
 
     @GetMapping("/getById/{id}")
-    public Location getLocationById(@PathVariable Integer locationId) throws NullLocationException {
-        return locationServ.getById(locationId);
+    public Location getLocationById(@PathVariable Integer id) throws NullLocationException {
+        System.out.println("Inside getLocationById");
+        return locationServ.getById(id);
     }
 
     @GetMapping("/getAll")
     public List<Location> getAllLocations(){
         return locationServ.getAllLocations();
     }
+
+
 }

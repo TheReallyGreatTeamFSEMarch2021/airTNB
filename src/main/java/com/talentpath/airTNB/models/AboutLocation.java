@@ -6,11 +6,12 @@ import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 
+
 @Entity
 @Table(name="aboutLocations")
 public class AboutLocation {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
 
     private String aboutLocation;
@@ -20,7 +21,6 @@ public class AboutLocation {
 
     @JsonIgnore
     @ManyToOne(fetch=FetchType.LAZY)
-    @NotBlank
     private Location location;
 
     public AboutLocation(){};
@@ -64,18 +64,19 @@ public class AboutLocation {
 
         AboutLocation that = (AboutLocation) o;
 
-        if (!id.equals(that.id)) return false;
-        if (!aboutLocation.equals(that.aboutLocation)) return false;
-        if (!order.equals(that.order)) return false;
-        return location.equals(that.location);
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (aboutLocation != null ? !aboutLocation.equals(that.aboutLocation) : that.aboutLocation != null)
+            return false;
+        if (order != null ? !order.equals(that.order) : that.order != null) return false;
+        return location != null ? location.equals(that.location) : that.location == null;
     }
 
     @Override
     public int hashCode() {
-        int result = id.hashCode();
-        result = 31 * result + aboutLocation.hashCode();
-        result = 31 * result + order.hashCode();
-        result = 31 * result + location.hashCode();
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (aboutLocation != null ? aboutLocation.hashCode() : 0);
+        result = 31 * result + (order != null ? order.hashCode() : 0);
+        result = 31 * result + (location != null ? location.hashCode() : 0);
         return result;
     }
 }

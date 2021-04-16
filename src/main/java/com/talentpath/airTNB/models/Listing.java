@@ -1,5 +1,7 @@
 package com.talentpath.airTNB.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
@@ -12,7 +14,6 @@ public class Listing {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Integer id;
 
     private String title;
@@ -35,7 +36,9 @@ public class Listing {
     @OneToMany(mappedBy = "listing", cascade = CascadeType.ALL)
     private List<Review> reviews;
 
-    @OneToOne(mappedBy = "listing", cascade = CascadeType.ALL)
+    @JsonIgnore
+    @ManyToOne(fetch=FetchType.LAZY)
+    @NotBlank
     private Location location;
 
 

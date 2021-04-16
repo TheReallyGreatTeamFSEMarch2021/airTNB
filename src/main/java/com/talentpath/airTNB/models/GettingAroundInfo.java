@@ -15,12 +15,11 @@ public class GettingAroundInfo {
 
     private String gettingAroundInfo;
 
-    @Min(value = 1, message = "order of gettingAroundInfo should be greater than or equal to 1")
+    @Min(value = 1, message="order of gettingAroundInfo should be greater than or equal to 1")
     private Integer order;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    @NotBlank
     private Location location;
 
     public GettingAroundInfo(){
@@ -66,18 +65,19 @@ public class GettingAroundInfo {
 
         GettingAroundInfo that = (GettingAroundInfo) o;
 
-        if (!id.equals(that.id)) return false;
-        if (!gettingAroundInfo.equals(that.gettingAroundInfo)) return false;
-        if (!order.equals(that.order)) return false;
-        return location.equals(that.location);
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (gettingAroundInfo != null ? !gettingAroundInfo.equals(that.gettingAroundInfo) : that.gettingAroundInfo != null)
+            return false;
+        if (order != null ? !order.equals(that.order) : that.order != null) return false;
+        return location != null ? location.equals(that.location) : that.location == null;
     }
 
     @Override
     public int hashCode() {
-        int result = id.hashCode();
-        result = 31 * result + gettingAroundInfo.hashCode();
-        result = 31 * result + order.hashCode();
-        result = 31 * result + location.hashCode();
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (gettingAroundInfo != null ? gettingAroundInfo.hashCode() : 0);
+        result = 31 * result + (order != null ? order.hashCode() : 0);
+        result = 31 * result + (location != null ? location.hashCode() : 0);
         return result;
     }
 }
