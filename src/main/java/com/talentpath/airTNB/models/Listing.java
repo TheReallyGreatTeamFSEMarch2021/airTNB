@@ -40,6 +40,10 @@ public class Listing {
     @JsonIgnore
     private List<Photo>  photos;
 
+    @OneToMany(mappedBy = "listing", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Room>  rooms;
+
     public Listing(String title, String subTitle, BigDecimal longitude, BigDecimal latitude, String state, String city, Host host, List<Review> reviews, List<Photo> photos){
         this.title = title;
         this.subTitle = subTitle;
