@@ -43,7 +43,6 @@ public class Listing {
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    @NotBlank
     private Location location;
 
 
