@@ -28,6 +28,7 @@ public class LocationController {
 
     @PostMapping("/add")
     public Location addLocation(@RequestBody Location toAdd){
+        System.out.println("toAdd");
         return locationServ.addLocation(toAdd);
     }
 

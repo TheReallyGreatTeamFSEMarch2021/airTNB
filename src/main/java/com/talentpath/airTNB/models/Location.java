@@ -7,7 +7,9 @@ import java.util.List;
 @Entity
 @Table(name="locations")
 public class Location {
-    public Location(){}
+    public Location(){
+
+    }
 
 
     @Id
@@ -22,7 +24,6 @@ public class Location {
 
     @OneToMany(mappedBy="location", cascade=CascadeType.ALL)
     private List<GettingAroundLocationInfo> gettingAroundLocationInfos;
-
 
     public Integer getId() {
         return id;
