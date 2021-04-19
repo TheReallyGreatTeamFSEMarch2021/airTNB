@@ -13,7 +13,7 @@ public class Location {
 
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
 
     @OneToMany(mappedBy="location", cascade=CascadeType.ALL)
