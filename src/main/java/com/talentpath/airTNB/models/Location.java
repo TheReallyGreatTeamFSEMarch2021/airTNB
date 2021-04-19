@@ -1,11 +1,17 @@
 package com.talentpath.airTNB.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 @Entity
 @Table(name="locations")
 public class Location {
+    public Location(){
+
+    }
+
+
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;

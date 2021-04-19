@@ -8,6 +8,14 @@ import javax.validation.constraints.NotBlank;
 @Entity
 @Table(name="aboutLocations")
 public class AboutLocation {
+    public AboutLocation(){}
+
+
+    public AboutLocation(@NotBlank Location location, @NotBlank String locationInfo){
+        this.location = location;
+        this.locationInfo = locationInfo;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

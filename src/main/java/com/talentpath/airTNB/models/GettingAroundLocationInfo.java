@@ -8,6 +8,13 @@ import javax.validation.constraints.NotBlank;
 @Entity
 @Table(name="gettingAroundLocationInfos")
 public class GettingAroundLocationInfo {
+    public GettingAroundLocationInfo(){}
+
+    public GettingAroundLocationInfo(@NotBlank Location location, @NotBlank String gettingAroundInfoStr){
+        this.location = location;
+        this.gettingAroundInfoStr = gettingAroundInfoStr;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
