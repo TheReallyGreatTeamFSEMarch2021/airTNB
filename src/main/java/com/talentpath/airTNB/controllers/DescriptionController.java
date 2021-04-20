@@ -23,13 +23,17 @@ public class DescriptionController {
     public Map<String,Integer> getTest(@PathVariable Integer id){
         return DescriptionService.testService(id);
     }
+
     @GetMapping("/{id}")
     public Optional<Description> getDescription(@PathVariable Integer id) {
-        return DescriptionService.getDescription(id);
+        Optional<Description> test = DescriptionService.getDescription(id);
+        System.out.println(test);
+        return test;
+        //return DescriptionService.getDescription(id);
     }
     @PostMapping("/add")
-    public Description addDescription(@RequestBody Description newDesc){
+    public Description addDescription(@RequestBody Description newDesc, @RequestBody Integer id){
         System.out.println(newDesc.toString());
-        return DescriptionService.addDescription(newDesc);
+        return DescriptionService.addDescription(newDesc,id);
     }
 }

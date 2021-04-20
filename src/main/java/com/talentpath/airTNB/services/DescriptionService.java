@@ -23,7 +23,8 @@ public class DescriptionService {
     public Optional<Description> getDescription(Integer id) {
         return repo.findById(id);
     }
-    public Description addDescription(Description newDesc) {
+    public Description addDescription(Description newDesc, Integer id) {
+        // Figure out how to map this to the listing model
         return repo.saveAndFlush(newDesc);
     }
 }
