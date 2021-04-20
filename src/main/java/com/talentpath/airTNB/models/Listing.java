@@ -20,11 +20,6 @@ public class Listing {
 
     private String subTitle;
 
-    @Digits(integer=3, fraction=6)
-    private BigDecimal longitude;
-
-    @Digits(integer=3, fraction=6)
-    private BigDecimal latitude;
 
     private String state;
 
@@ -41,16 +36,18 @@ public class Listing {
     @JsonIgnore
     private List<Photo>  photos;
 
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
+//    @JsonIgnore
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    private Location location;
+
+    @OneToOne(cascade = CascadeType.ALL)
     private Location location;
 
 
-    public Listing(String title, String subTitle, BigDecimal longitude, BigDecimal latitude, String state, String city, Host host, List<Review> reviews, List<Photo> photos){
+
+    public Listing(String title, String subTitle, String state, String city, Host host, List<Review> reviews, List<Photo> photos){
         this.title = title;
         this.subTitle = subTitle;
-        this.longitude = longitude;
-        this.latitude = latitude;
         this.state = state;
         this.city = city;
         this.host = host;
@@ -83,22 +80,6 @@ public class Listing {
 
     public void setSubTitle(String subTitle) {
         this.subTitle = subTitle;
-    }
-
-    public BigDecimal getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(BigDecimal longitude) {
-        this.longitude = longitude;
-    }
-
-    public BigDecimal getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(BigDecimal latitude) {
-        this.latitude = latitude;
     }
 
     public String getState() {

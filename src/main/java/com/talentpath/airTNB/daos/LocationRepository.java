@@ -10,10 +10,5 @@ import java.util.Optional;
 public interface LocationRepository extends JpaRepository<Location, Integer> {
 
 
-    @Modifying
-    @Query(
-            value = "truncate locations restart identity cascade",
-            nativeQuery = true
-    )
-    void reset();
+
 }
