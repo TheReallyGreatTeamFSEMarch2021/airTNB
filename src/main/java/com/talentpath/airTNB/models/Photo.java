@@ -8,7 +8,7 @@ import javax.validation.constraints.NotBlank;
 public class Photo {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @NotBlank
