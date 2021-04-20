@@ -16,6 +16,7 @@ public class RuleList {
     private Boolean petsAllowed;
     private Boolean childSuitable;
     private Boolean partiesAllowed;
+    private String otherRules;
 
     @Enumerated(EnumType.STRING)
     private CheckInMethod checkInMethod;
@@ -111,5 +112,13 @@ public class RuleList {
 
     public void setListing(Listing listing) {
         this.listing = listing;
+    }
+
+    public String getOtherRules() {
+        return otherRules;
+    }
+
+    public void setOtherRules(String otherRules) {
+        this.otherRules = otherRules;
     }
 }
