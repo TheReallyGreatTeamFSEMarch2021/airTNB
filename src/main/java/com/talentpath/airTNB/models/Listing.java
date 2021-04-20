@@ -1,7 +1,10 @@
 package com.talentpath.airTNB.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotBlank;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -27,13 +30,29 @@ public class Listing {
 
     private String city;
 
-    @OneToOne(mappedBy = "listing", cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="host_id")
     private Host host;
 
     @OneToMany(mappedBy = "listing", cascade = CascadeType.ALL)
     private List<Review> reviews;
 
-    public Listing(String title, String subTitle, BigDecimal longitude, BigDecimal latitude, String state, String city, Host host, List<Review> reviews){
+    @OneToMany(mappedBy = "listing", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Photo>  photos;
+
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @NotBlank
+    private Location location;
+
+    @OneToMany(mappedBy = "listing", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Room>  rooms;
+
+
+    public Listing(String title, String subTitle, BigDecimal longitude, BigDecimal latitude, String state, String city, Host host, List<Review> reviews, List<Photo> photos){
         this.title = title;
         this.subTitle = subTitle;
         this.longitude = longitude;
@@ -42,6 +61,7 @@ public class Listing {
         this.city = city;
         this.host = host;
         this.reviews = reviews;
+        this.photos = photos;
     }
 
     public Listing(){
@@ -117,5 +137,21 @@ public class Listing {
 
     public void setReviews(List<Review> reviews) {
         this.reviews = reviews;
+    }
+
+    public List<Photo> getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(List<Photo> photos) {
+        this.photos = photos;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
     }
 }

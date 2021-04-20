@@ -11,9 +11,8 @@ public class Host {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name="listing_id", nullable = false)
-    private Listing listing;
+    @OneToMany(mappedBy = "host", cascade = CascadeType.ALL)
+    private List<Listing> listings;
 
 
 }

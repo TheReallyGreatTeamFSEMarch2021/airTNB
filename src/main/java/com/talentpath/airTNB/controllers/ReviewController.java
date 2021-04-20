@@ -21,9 +21,9 @@ public class ReviewController {
         return service.getAllReviews();
     }
 
-    @GetMapping("/getByHost/{host}")
-    public List<Review> getReviewsByHost(@PathVariable Integer hostId){
-        return service.getByListing(hostId);
+    @GetMapping("/getByListing/{listingId}")
+    public List<Review> getReviewsByHost(@PathVariable Integer listingId){
+        return service.getByListing(listingId);
     }
 
     @GetMapping("/getById/{id}")
