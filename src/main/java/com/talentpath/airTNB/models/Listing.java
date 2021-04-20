@@ -52,6 +52,14 @@ public class Listing {
     @JsonIgnore
     private List<Room>  rooms;
 
+    public RuleList getRuleList() {
+        return ruleList;
+    }
+
+    public void setRuleList(RuleList ruleList) {
+        this.ruleList = ruleList;
+    }
+
     @OneToOne(mappedBy = "listing",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
@@ -61,8 +69,6 @@ public class Listing {
     public Listing(String title, String subTitle, String state, String city, Host host, List<Review> reviews, List<Photo> photos){
         this.title = title;
         this.subTitle = subTitle;
-        this.longitude = longitude;
-        this.latitude = latitude;
         this.state = state;
         this.city = city;
         this.host = host;
