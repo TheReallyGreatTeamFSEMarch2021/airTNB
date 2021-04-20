@@ -10,10 +10,7 @@ import java.util.List;
 @Entity
 @Table(name="locations")
 public class Location {
-<<<<<<< HEAD
 
-=======
->>>>>>> staging
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
