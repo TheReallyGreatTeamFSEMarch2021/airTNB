@@ -1,6 +1,9 @@
 package com.talentpath.airTNB.controllers;
 
 import com.talentpath.airTNB.exceptions.NullLocationException;
+
+import com.talentpath.airTNB.models.LatLongRequest;
+
 import com.talentpath.airTNB.models.Location;
 import com.talentpath.airTNB.services.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,11 +29,15 @@ public class LocationController {
         return locationServ.getLocationById(id);
     }
 
-    @PostMapping("/add")
-    public Location addLocation(@RequestBody Location toAdd){
-        System.out.println("toAdd");
-        return locationServ.addLocation(toAdd);
+
+
+    @PostMapping("/add/{listingId}")
+    public Location addLocation(@RequestBody LatLongRequest latLongRequest, @PathVariable Integer listingId) throws NullLocationException {
+        return locationServ.addLocation(latLongRequest, listingId);
     }
+
+
+
 
 
 }

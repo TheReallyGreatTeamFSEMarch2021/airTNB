@@ -5,6 +5,7 @@ import com.talentpath.airTNB.exceptions.NullListingException;
 import com.talentpath.airTNB.models.Listing;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -30,4 +31,7 @@ public class ListingService {
     public Listing addListing(Listing toAdd) {
         return listingRepository.saveAndFlush(toAdd);
     }
+
+
+
 }
