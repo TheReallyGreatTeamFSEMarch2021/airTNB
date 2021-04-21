@@ -46,12 +46,9 @@ public class Listing {
     @OneToMany(mappedBy = "listing", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Room>  rooms;
-    //*
+    
     @OneToOne(cascade = CascadeType.ALL)
     private Description description;
-    //*/
-    //------------------------------------------------------------
-
 
     public Listing(String title, String subTitle, String state, String city, Host host, List<Review> reviews, List<Photo> photos){
         this.title = title;
