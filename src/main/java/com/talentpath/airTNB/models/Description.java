@@ -11,25 +11,21 @@ public class Description {
         @Id
         @GeneratedValue
         private Integer id;
-        //private String title; // This is grabbed from Listing model
-        private String hostEmail; // Can this be added to the Host model?
-        private String hostImageURL; // Move this to Host Model?
+
+        // These need to be moved into the host model
+        private String hostEmail;
+        private String hostImageURL;
 
         private String smallDescription;
-        private String location; // Gets this from Location
-
         private String cancellationDate;
+        // Is this in the listing?
         private String typeOfPlace;
-        // Count number of Reviews from other table
-        // Get [Type of Place] + " in " + [City] + "hosted by "+ [host]
-        // This is for testing purposes. Will be removed.
+
         public Description (){}
 
-        public Description(String hostEmail, String smallDescription, String hostImageURL, String location, String cancellationDate, String typeOfPlace) {
-                this.hostEmail = hostEmail;
-                this.smallDescription = smallDescription;
+        public Description(String hostEmail, String smallDescription, String hostImageURL, String cancellationDate, String typeOfPlace) {
                 this.hostImageURL = hostImageURL;
-                this.location = location;
+                this.smallDescription = smallDescription;
                 this.cancellationDate = cancellationDate;
                 this.typeOfPlace = typeOfPlace;
         }
@@ -58,14 +54,6 @@ public class Description {
                 this.smallDescription = smallDescription;
         }
 
-        public String getLocation() {
-                return location;
-        }
-
-        public void setLocation(String location) {
-                this.location = location;
-        }
-
         public String getCancellationDate() {
                 return cancellationDate;
         }
@@ -89,7 +77,6 @@ public class Description {
                         ", hostEmail='" + hostEmail + '\'' +
                         ", smallDescription='" + smallDescription + '\'' +
                         ", hostImageURL='" + hostImageURL + '\'' +
-                        ", location='" + location + '\'' +
                         ", cancellationDate='" + cancellationDate + '\'' +
                         ", typeOfPlace='" + typeOfPlace + '\'' +
                         '}';

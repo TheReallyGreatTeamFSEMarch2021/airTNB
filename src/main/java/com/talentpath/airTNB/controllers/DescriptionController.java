@@ -32,8 +32,8 @@ public class DescriptionController {
         //return DescriptionService.getDescription(id);
     }
     @PostMapping("/add")
-    public Description addDescription(@RequestBody Description newDesc, @RequestBody Integer id){
-        System.out.println(newDesc.toString());
-        return DescriptionService.addDescription(newDesc,id);
+    public Description addDescription(@RequestBody Description newDesc){
+        System.out.println("I am in the controller");
+        return DescriptionService.addDescription(newDesc);
     }
 }
