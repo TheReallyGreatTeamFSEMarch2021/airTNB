@@ -53,14 +53,6 @@ public class Listing {
     @JsonIgnore
     private List<Room>  rooms;
 
-    public RuleList getRuleList() {
-        return ruleList;
-    }
-
-    public void setRuleList(RuleList ruleList) {
-        this.ruleList = ruleList;
-    }
-
     @OneToOne(mappedBy = "listing",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY)
@@ -181,5 +173,13 @@ public class Listing {
 
     public void setRooms(List<Room> rooms) {
         this.rooms = rooms;
+    }
+
+    public RuleList getRuleList() {
+        return ruleList;
+    }
+
+    public void setRuleList(RuleList ruleList) {
+        this.ruleList = ruleList;
     }
 }
