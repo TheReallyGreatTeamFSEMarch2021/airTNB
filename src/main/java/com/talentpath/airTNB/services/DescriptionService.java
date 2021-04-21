@@ -1,7 +1,5 @@
 package com.talentpath.airTNB.services;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Optional;
 
 import com.talentpath.airTNB.daos.DescriptionRepository;
@@ -15,16 +13,10 @@ public class DescriptionService {
     @Autowired
     DescriptionRepository repo;
 
-    public Map<String,Integer> testService(Integer id) {
-        Map<String, Integer> test = new HashMap<String,Integer>();
-        test.put("ID", id);
-        return test;
-    }
     public Optional<Description> getDescription(Integer id) {
         return repo.findById(id);
     }
     public Description addDescription(Description newDesc) {
-        // Figure out how to map this to the listing model
         return repo.saveAndFlush(newDesc);
     }
 }
