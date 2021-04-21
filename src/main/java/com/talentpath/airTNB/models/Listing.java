@@ -24,6 +24,12 @@ public class Listing {
 
     private String city;
 
+    private Integer freeCancellationDays;
+
+    private Integer cancellationRefundPercentage;
+
+    private Integer paidCancellationDays;
+
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="host_id")
@@ -75,6 +81,30 @@ public class Listing {
 
     public Integer getId() {
         return id;
+    }
+
+    public Integer getFreeCancellationDays() {
+        return freeCancellationDays;
+    }
+
+    public void setFreeCancellationDays(Integer freeCancellationDays) {
+        this.freeCancellationDays = freeCancellationDays;
+    }
+
+    public Integer getCancellationRefundPercentage() {
+        return cancellationRefundPercentage;
+    }
+
+    public void setCancellationRefundPercentage(Integer cancellationRefundPercentage) {
+        this.cancellationRefundPercentage = cancellationRefundPercentage;
+    }
+
+    public Integer getPaidCancellationDays() {
+        return paidCancellationDays;
+    }
+
+    public void setPaidCancellationDays(Integer paidCancellationDays) {
+        this.paidCancellationDays = paidCancellationDays;
     }
 
     public void setId(Integer id) {
