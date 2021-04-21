@@ -18,10 +18,6 @@ public class Description {
         @JsonIgnore
         private Listing listing;
         
-        // These need to be moved into the host model
-        private String hostEmail;
-        private String hostImageURL;
-
         private String smallDescription;
         private String cancellationDate;
 
@@ -30,27 +26,11 @@ public class Description {
 
         public Description (){}
 
-        public Description(String hostEmail, String smallDescription, String hostImageURL, String cancellationDate, String typeOfPlace) {
-                this.hostImageURL = hostImageURL;
+        public Description(String smallDescription, String cancellationDate, String typeOfPlace) {
+                
                 this.smallDescription = smallDescription;
                 this.cancellationDate = cancellationDate;
                 this.typeOfPlace = typeOfPlace;
-        }
-
-        public String getHostEmail() {
-                return hostEmail;
-        }
-
-        public void setHostEmail(String hostEmail) {
-                this.hostEmail = hostEmail;
-        }
-
-        public String getHostImageURL() {
-                return hostImageURL;
-        }
-
-        public void setHostImageURL(String hostImageURL) {
-                this.hostImageURL = hostImageURL;
         }
 
         public String getSmallDescription() {
@@ -81,9 +61,7 @@ public class Description {
         public String toString() {
                 return "Description{" +
                         "id=" + id +
-                        ", hostEmail='" + hostEmail + '\'' +
                         ", smallDescription='" + smallDescription + '\'' +
-                        ", hostImageURL='" + hostImageURL + '\'' +
                         ", cancellationDate='" + cancellationDate + '\'' +
                         ", typeOfPlace='" + typeOfPlace + '\'' +
                         '}';
