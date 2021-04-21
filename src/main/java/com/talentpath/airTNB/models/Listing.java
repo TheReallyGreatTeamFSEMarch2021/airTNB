@@ -2,6 +2,8 @@ package com.talentpath.airTNB.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import javassist.runtime.Desc;
+
 import javax.persistence.*;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
@@ -50,7 +52,7 @@ public class Listing {
     @OneToOne(cascade = CascadeType.ALL)
     private Description description;
 
-    public Listing(String title, String subTitle, String state, String city, Host host, List<Review> reviews, List<Photo> photos){
+    public Listing(String title, String subTitle, String state, String city, Host host, List<Review> reviews, List<Photo> photos, Description description){
         this.title = title;
         this.subTitle = subTitle;
         this.state = state;
@@ -58,6 +60,7 @@ public class Listing {
         this.host = host;
         this.reviews = reviews;
         this.photos = photos;
+        this.description = description;
     }
 
     public Listing(){
@@ -133,5 +136,11 @@ public class Listing {
 
     public void setLocation(Location location) {
         this.location = location;
+    }
+    public Description getDescription(){
+        return description;
+    }
+    public void setDescription(Description description){
+        this.description = description;
     }
 }
