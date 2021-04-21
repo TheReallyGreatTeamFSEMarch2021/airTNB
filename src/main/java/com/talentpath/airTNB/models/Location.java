@@ -1,5 +1,7 @@
 package com.talentpath.airTNB.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
@@ -21,6 +23,7 @@ public class Location {
     @Digits(integer=3, fraction=6)
     private BigDecimal latitude;
 
+    @JsonIgnore
     @OneToOne
     private Listing listing;
 //    @OneToMany(mappedBy="location", cascade=CascadeType.ALL)

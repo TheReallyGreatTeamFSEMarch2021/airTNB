@@ -5,12 +5,10 @@ import javax.validation.constraints.NotBlank;
 import java.math.BigDecimal;
 
 public class LatLongRequest {
-    @NotBlank
-    @Digits(integer=3, fraction=6)
+
     private BigDecimal longitude;
 
-    @NotBlank
-    @Digits(integer=3, fraction=6)
+
     private BigDecimal latitude;
 
     public BigDecimal getLongitude() {
