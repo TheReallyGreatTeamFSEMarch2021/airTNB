@@ -1,6 +1,7 @@
 package com.talentpath.airTNB.controllers;
 
 import com.talentpath.airTNB.exceptions.NullListingException;
+import com.talentpath.airTNB.models.CityAndStateRequest;
 import com.talentpath.airTNB.models.Listing;
 import com.talentpath.airTNB.models.Test;
 import com.talentpath.airTNB.services.ListingService;
@@ -25,6 +26,13 @@ public class ListingController {
     @GetMapping("/getById/{id}")
     public Listing getListingById(@PathVariable Integer id) throws NullListingException {
         return listingService.getListingById(id);
+    }
+
+
+    @GetMapping("/getCloseListingsByCityAndState/{listingId}")
+    public List<Listing> getByCityAndState(@PathVariable Integer listingId) throws NullListingException {
+        System.out.println("HEY DOUBLE CHECKING");
+        return listingService.getListingsByCityAndState(listingId);
     }
 
     @PostMapping("/add")
