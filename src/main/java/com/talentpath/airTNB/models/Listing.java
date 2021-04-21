@@ -38,11 +38,13 @@ public class Listing {
     @OneToMany(mappedBy = "listing", cascade = CascadeType.ALL)
     private List<Photo>  photos;
 
+
 //    @JsonIgnore
 //    @ManyToOne(fetch = FetchType.LAZY)
 //    private Location location;
 
     @OneToOne(cascade = CascadeType.ALL)
+
     private Location location;
 
     @OneToMany(mappedBy = "listing", cascade = CascadeType.ALL)
@@ -52,7 +54,10 @@ public class Listing {
     @OneToOne(cascade = CascadeType.ALL)
     private Description description;
 
+
+
     public Listing(String title, String subTitle, String state, String city, Host host, List<Review> reviews, List<Photo> photos, Description description){
+
         this.title = title;
         this.subTitle = subTitle;
         this.state = state;
@@ -136,6 +141,14 @@ public class Listing {
 
     public void setLocation(Location location) {
         this.location = location;
+    }
+    
+     public List<Room> getRooms() {
+        return rooms;
+    }
+
+    public void setRooms(List<Room> rooms) {
+        this.rooms = rooms;
     }
     public Description getDescription(){
         return description;

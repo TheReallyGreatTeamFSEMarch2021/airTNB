@@ -3,15 +3,19 @@ package com.talentpath.airTNB.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+
 import java.util.List;
 
 @Entity
 @Table(name="locations")
 public class Location {
+
+
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
