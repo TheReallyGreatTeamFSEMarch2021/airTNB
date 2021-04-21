@@ -31,4 +31,10 @@ public class ListingController {
     public Listing addListing(@RequestBody Listing toAdd){
         return listingService.addListing(toAdd);
     }
+
+    @GetMapping("/getCloseListingsByCityAndState/{listingId}")
+    public List<Listing> getByCityAndState(@PathVariable Integer listingId) throws NullListingException {
+        System.out.println("HEY DOUBLE CHECKING");
+        return listingService.getListingsByCityAndState(listingId);
+    }
 }

@@ -32,6 +32,17 @@ public class ListingService {
         return listingRepository.saveAndFlush(toAdd);
     }
 
+    public List<Listing> getListingsByCityAndState(Integer listingId) throws NullListingException {
+        Optional<Listing> listing = listingRepository.findById(listingId);
+        String city, state;
+        if(listing.isPresent()){
+
+            return listingRepository.findAllByCityIgnoreCaseAndStateIgnoreCase(listing.get().getCity(), listing.get().getState());
+        }else{
+            throw new NullListingException("No listing exists with id: " + listingId);
+        }
+
+    }
 
 
 }
