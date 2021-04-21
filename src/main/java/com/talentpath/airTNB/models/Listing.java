@@ -32,8 +32,8 @@ public class Listing {
     @OneToMany(mappedBy = "listing", cascade = CascadeType.ALL)
     private List<Review> reviews;
 
-    @OneToMany(mappedBy = "listing", cascade = CascadeType.ALL)
     @JsonIgnore
+    @OneToMany(mappedBy = "listing", cascade = CascadeType.ALL)
     private List<Photo>  photos;
 
 //    @JsonIgnore
