@@ -50,8 +50,11 @@ public class Listing {
     @OneToMany(mappedBy = "listing", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Room>  rooms;
-
-
+    //*
+    @OneToOne(cascade = CascadeType.ALL)
+    private Description description;
+    //*/
+    //------------------------------------------------------------
     public Listing(String title, String subTitle, BigDecimal longitude, BigDecimal latitude, String state, String city, Host host, List<Review> reviews, List<Photo> photos){
         this.title = title;
         this.subTitle = subTitle;
@@ -153,5 +156,11 @@ public class Listing {
 
     public void setLocation(Location location) {
         this.location = location;
+    }
+    public void setDescription(Description description){
+        this.description = description;
+    }
+    public Description getDescription(){
+        return description;
     }
 }

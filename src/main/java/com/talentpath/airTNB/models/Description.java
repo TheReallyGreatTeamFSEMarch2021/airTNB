@@ -4,20 +4,27 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 @Entity
-@Table(name="description")
+@Table(name="descriptions")
 public class Description {
         @Id
         @GeneratedValue
         private Integer id;
-
+        
+        @OneToOne(cascade = CascadeType.ALL)
+        @JsonIgnore
+        private Listing listing;
+        
         // These need to be moved into the host model
         private String hostEmail;
         private String hostImageURL;
 
         private String smallDescription;
         private String cancellationDate;
+
         // Is this in the listing?
         private String typeOfPlace;
 
