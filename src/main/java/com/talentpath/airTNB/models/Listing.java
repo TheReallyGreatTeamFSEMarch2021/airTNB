@@ -2,6 +2,8 @@ package com.talentpath.airTNB.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import javassist.runtime.Desc;
+
 import javax.persistence.*;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
@@ -42,23 +44,23 @@ public class Listing {
     @OneToMany(mappedBy = "listing", cascade = CascadeType.ALL)
     private List<Photo>  photos;
 
-//    @JsonIgnore
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    private Location location;
-
     @OneToOne(cascade = CascadeType.ALL)
     private Location location;
 
     @OneToMany(mappedBy = "listing", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Room>  rooms;
+    
+    @OneToOne(cascade = CascadeType.ALL)
+    private Description description;
 
     @OneToOne(mappedBy = "listing",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY)
     private RuleList ruleList;
 
-    public Listing(String title, String subTitle, String state, String city, Host host, List<Review> reviews, List<Photo> photos){
+    public Listing(String title, String subTitle, String state, String city, Host host, List<Review> reviews, List<Photo> photos, Description description){
+
         this.title = title;
         this.subTitle = subTitle;
         this.state = state;
@@ -66,6 +68,7 @@ public class Listing {
         this.host = host;
         this.reviews = reviews;
         this.photos = photos;
+        this.description = description;
     }
 
     public Listing(){
@@ -167,7 +170,7 @@ public class Listing {
         this.location = location;
     }
 
-    public List<Room> getRooms() {
+     public List<Room> getRooms() {
         return rooms;
     }
 
@@ -181,5 +184,12 @@ public class Listing {
 
     public void setRuleList(RuleList ruleList) {
         this.ruleList = ruleList;
+    }
+
+    public Description getDescription(){
+        return description;
+    }
+    public void setDescription(Description description){
+        this.description = description;
     }
 }

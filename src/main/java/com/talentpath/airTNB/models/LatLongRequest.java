@@ -6,7 +6,6 @@ import java.math.BigDecimal;
 
 public class LatLongRequest {
 
-
     private BigDecimal longitude;
 
 
