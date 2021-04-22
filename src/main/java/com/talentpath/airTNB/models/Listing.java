@@ -2,6 +2,8 @@ package com.talentpath.airTNB.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import javassist.runtime.Desc;
+
 import javax.persistence.*;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
@@ -37,10 +39,12 @@ public class Listing {
     @NotBlank
     private Location location;
 
-
     @OneToMany(mappedBy = "listing", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Room>  rooms;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Description description;
 
     public Listing(String title, String subTitle, Host host, List<Review> reviews, List<Photo> photos){
         this.title = title;
@@ -48,6 +52,7 @@ public class Listing {
         this.host = host;
         this.reviews = reviews;
         this.photos = photos;
+        this.description = description;
     }
 
     public Listing(){
@@ -116,4 +121,12 @@ public class Listing {
     public void setRooms(List<Room> rooms) {
         this.rooms = rooms;
     }
+    public Description getDescription(){
+        return description;
+    }
+    public void setDescription(Description description){
+        this.description = description;
+    }
+
+
 }
