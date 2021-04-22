@@ -5,8 +5,10 @@ import com.talentpath.airTNB.models.Listing;
 import com.talentpath.airTNB.models.Test;
 import com.talentpath.airTNB.services.ListingService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 @RestController
@@ -32,9 +34,13 @@ public class ListingController {
         return listingService.addListing(toAdd);
     }
 
-    @GetMapping("/getCloseListingsByCityAndState/{listingId}")
-    public List<Listing> getByCityAndState(@PathVariable Integer listingId) throws NullListingException {
-        System.out.println("HEY DOUBLE CHECKING");
+    @GetMapping("/getListingsByCityAndState/{listingId}")
+    public List<Listing> getListingsByCityAndState(@PathVariable Integer listingId) throws NullListingException {
         return listingService.getListingsByCityAndState(listingId);
+    }
+
+    @GetMapping("/getListingsCloseByLatAndLong/{listingId}")
+    public List<Listing> getByLatAndLong(@PathVariable Integer listingId)throws NullListingException{
+        return listingService.getListingsByLatAndLong(listingId);
     }
 }

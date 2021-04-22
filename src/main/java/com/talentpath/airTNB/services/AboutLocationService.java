@@ -33,7 +33,6 @@ public class AboutLocationService {
         }else{
             throw new NullLocationException("No location found with id: " + locationId);
         }
-
     }
 
 
