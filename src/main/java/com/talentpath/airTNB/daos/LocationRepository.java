@@ -9,6 +9,4 @@ import java.util.Optional;
 
 public interface LocationRepository extends JpaRepository<Location, Integer> {
 
-
-
 }
