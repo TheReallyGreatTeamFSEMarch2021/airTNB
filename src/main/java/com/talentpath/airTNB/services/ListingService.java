@@ -43,9 +43,6 @@ public class ListingService {
             latitude = location.getLatitude();
             longitude = location.getLongitude();
             BigDecimal dist = new BigDecimal(.2);
-            System.out.println(latitude.subtract(dist));
-            System.out.println(longitude.subtract(dist));
-
             return listingRepository.findCloseLocationsByLatAndLong(latitude.subtract(dist), latitude.add(dist), longitude.subtract(dist), longitude.add(dist) );
         }else{
             throw new NullListingException("No listing exists with id: " + listingId);
