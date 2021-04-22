@@ -22,10 +22,6 @@ public class Listing {
 
     private String subTitle;
 
-    private String state;
-
-    private String city;
-
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="host_id")
@@ -38,11 +34,9 @@ public class Listing {
     @JsonIgnore
     private List<Photo>  photos;
 
-//    @JsonIgnore
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    private Location location;
-
     @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "location_id", referencedColumnName = "id")
+    @NotBlank
     private Location location;
 
     @OneToMany(mappedBy = "listing", cascade = CascadeType.ALL)
@@ -52,14 +46,9 @@ public class Listing {
     @OneToOne(cascade = CascadeType.ALL)
     private Description description;
 
-
-
-    public Listing(String title, String subTitle, String state, String city, Host host, List<Review> reviews, List<Photo> photos, Description description){
-
+    public Listing(String title, String subTitle, Host host, List<Review> reviews, List<Photo> photos){
         this.title = title;
         this.subTitle = subTitle;
-        this.state = state;
-        this.city = city;
         this.host = host;
         this.reviews = reviews;
         this.photos = photos;
@@ -91,22 +80,6 @@ public class Listing {
 
     public void setSubTitle(String subTitle) {
         this.subTitle = subTitle;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
     }
 
     public Host getHost() {
@@ -141,7 +114,7 @@ public class Listing {
         this.location = location;
     }
 
-     public List<Room> getRooms() {
+    public List<Room> getRooms() {
         return rooms;
     }
 
@@ -154,6 +127,4 @@ public class Listing {
     public void setDescription(Description description){
         this.description = description;
     }
-
-
 }
