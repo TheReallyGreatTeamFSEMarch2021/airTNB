@@ -37,7 +37,6 @@ class HostServiceTest {
         host.setVerified(true);
         Listing listing = new Listing();
         listing.setTitle("a listing");
-        listing.setCity("Houston");
         listing.setHost(host);
         host.setListings(List.of(listing));
         hostRepository.saveAndFlush(host);
@@ -54,7 +53,6 @@ class HostServiceTest {
         assertTrue(test.isSuperHost());
         assertTrue(test.isVerified());
         assertEquals("a listing",test.getListings().get(0).getTitle());
-        assertEquals("Houston",test.getListings().get(0).getCity());
     }
 
     @Test
@@ -68,7 +66,6 @@ class HostServiceTest {
             assertTrue(test.isSuperHost());
             assertTrue(test.isVerified());
             assertEquals("a listing",test.getListings().get(0).getTitle());
-            assertEquals("Houston",test.getListings().get(0).getCity());
         }
         catch (Exception e) {
             fail("Exception caught during goldent path test: " +e.getClass() + " " + e.getMessage());
@@ -84,7 +81,6 @@ class HostServiceTest {
         host.setVerified(true);
         Listing listing = new Listing();
         listing.setTitle("another listing");
-        listing.setCity("Galveston");
         listing.setHost(host);
         host.setListings(List.of(listing));
         hostService.addHost(host);
@@ -97,7 +93,6 @@ class HostServiceTest {
             assertFalse(host.isSuperHost());
             assertTrue(host.isVerified());
             assertEquals("another listing",host.getListings().get(0).getTitle());
-            assertEquals("Galveston",host.getListings().get(0).getCity());
 
         }
         catch (Exception e) {
