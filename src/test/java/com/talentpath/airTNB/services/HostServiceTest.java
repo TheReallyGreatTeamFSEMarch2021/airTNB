@@ -11,7 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import org.springframework.transaction.annotation.Transactional;
-import java.util.ArrayList;
+
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -38,21 +38,70 @@ class HostServiceTest {
         Listing listing = new Listing();
         listing.setTitle("a listing");
         listing.setCity("Houston");
+        listing.setHost(host);
         host.setListings(List.of(listing));
         hostRepository.saveAndFlush(host);
     }
 
     @Test
+    @Transactional
     void getAllHosts() {
         List<Host> list = hostService.getAllHosts();
-        assertEquals(1,list.get(0).getId());
+        Host test = list.get(0);
+        assertNotNull(test);
+        assertEquals(1,test.getId());
+        assertEquals("a host",test.getDescription());
+        assertTrue(test.isSuperHost());
+        assertTrue(test.isVerified());
+        assertEquals("a listing",test.getListings().get(0).getTitle());
+        assertEquals("Houston",test.getListings().get(0).getCity());
     }
 
     @Test
+    @Transactional
     void getHostById() {
+        try {
+            Host test = hostService.getHostById(1);
+            assertNotNull(test);
+            assertEquals(1,test.getId());
+            assertEquals("a host",test.getDescription());
+            assertTrue(test.isSuperHost());
+            assertTrue(test.isVerified());
+            assertEquals("a listing",test.getListings().get(0).getTitle());
+            assertEquals("Houston",test.getListings().get(0).getCity());
+        }
+        catch (Exception e) {
+            fail("Exception caught during goldent path test: " +e.getClass() + " " + e.getMessage());
+        }
     }
 
     @Test
+    @Transactional
     void addHost() {
+        Host host = new Host();
+        host.setSuperHost(false);
+        host.setDescription("another host");
+        host.setVerified(true);
+        Listing listing = new Listing();
+        listing.setTitle("another listing");
+        listing.setCity("Galveston");
+        listing.setHost(host);
+        host.setListings(List.of(listing));
+        hostService.addHost(host);
+
+        try {
+            host = hostService.getHostById(2);
+            assertNotNull(host);
+            assertEquals(2,host.getId());
+            assertEquals("another host",host.getDescription());
+            assertFalse(host.isSuperHost());
+            assertTrue(host.isVerified());
+            assertEquals("another listing",host.getListings().get(0).getTitle());
+            assertEquals("Galveston",host.getListings().get(0).getCity());
+
+        }
+        catch (Exception e) {
+            fail("Exception caught during golden path test: " + e.getClass() + " " + e.getMessage());
+        }
     }
 }
