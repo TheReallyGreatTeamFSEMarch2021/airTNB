@@ -39,7 +39,7 @@ public class Host {
         this.id = id;
     }
 
-    public Boolean getVerified() {
+    public Boolean isVerified() {
         return verified;
     }
 
@@ -47,7 +47,7 @@ public class Host {
         this.verified = verified;
     }
 
-    public Boolean getSuperHost() {
+    public Boolean isSuperHost() {
         return superHost;
     }
 
