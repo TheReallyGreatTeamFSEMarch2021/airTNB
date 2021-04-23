@@ -57,16 +57,12 @@ public class Listing {
             fetch = FetchType.LAZY)
     private RuleList ruleList;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private Description description;
-
     public Listing(String title, String subTitle, Host host, List<Review> reviews, List<Photo> photos){
         this.title = title;
         this.subTitle = subTitle;
         this.host = host;
         this.reviews = reviews;
         this.photos = photos;
-        this.description = description;
     }
 
     public Listing(){

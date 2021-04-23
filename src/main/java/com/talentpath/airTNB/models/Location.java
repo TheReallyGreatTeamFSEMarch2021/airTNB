@@ -110,22 +110,6 @@ public class Location {
         this.gettingAroundLocationInfos = gettingAroundLocationInfos;
     }
 
-    public BigDecimal getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(BigDecimal longitude) {
-        this.longitude = longitude;
-    }
-
-    public BigDecimal getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(BigDecimal latitude) {
-        this.latitude = latitude;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
