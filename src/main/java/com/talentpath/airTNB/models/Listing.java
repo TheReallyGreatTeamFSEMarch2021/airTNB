@@ -22,10 +22,6 @@ public class Listing {
 
     private String subTitle;
 
-    private String state;
-
-    private String city;
-
     private Integer freeCancellationDays;
 
     private Integer cancellationRefundPercentage;
@@ -45,6 +41,8 @@ public class Listing {
     private List<Photo>  photos;
 
     @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "location_id", referencedColumnName = "id")
+    @NotBlank
     private Location location;
 
     @OneToMany(mappedBy = "listing", cascade = CascadeType.ALL)
@@ -59,12 +57,12 @@ public class Listing {
             fetch = FetchType.LAZY)
     private RuleList ruleList;
 
-    public Listing(String title, String subTitle, String state, String city, Host host, List<Review> reviews, List<Photo> photos, Description description){
+    @OneToOne(cascade = CascadeType.ALL)
+    private Description description;
 
+    public Listing(String title, String subTitle, Host host, List<Review> reviews, List<Photo> photos){
         this.title = title;
         this.subTitle = subTitle;
-        this.state = state;
-        this.city = city;
         this.host = host;
         this.reviews = reviews;
         this.photos = photos;
@@ -122,22 +120,6 @@ public class Listing {
         this.subTitle = subTitle;
     }
 
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
     public Host getHost() {
         return host;
     }
@@ -170,7 +152,7 @@ public class Listing {
         this.location = location;
     }
 
-     public List<Room> getRooms() {
+    public List<Room> getRooms() {
         return rooms;
     }
 

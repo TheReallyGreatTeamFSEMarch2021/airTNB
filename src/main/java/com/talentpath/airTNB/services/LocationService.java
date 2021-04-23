@@ -48,8 +48,7 @@ public class LocationService {
             toAddLocation.setLatitude(latLongRequest.getLatitude());
             toAddLocation.setLongitude(latLongRequest.getLongitude());
             return locationRepo.saveAndFlush(toAddLocation);
-        }
-        else{
+        }else{
             throw new NullLocationException("In LocationService, for method addLocation, no listing found with id: " + listingId);
         }
     }
