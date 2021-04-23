@@ -11,6 +11,7 @@ import java.util.List;
 
 @Repository
 public interface ListingRepository extends JpaRepository<Listing, Integer> {
+
     @Query("SELECT l FROM Listing l WHERE l.location.latitude > :lat1 AND l.location.latitude < :lat2 AND l.location.longitude > :long1 AND l.location.longitude < :long2")
     List<Listing> findCloseLocationsByLatAndLong(BigDecimal lat1, BigDecimal lat2, BigDecimal long1, BigDecimal long2);
 
