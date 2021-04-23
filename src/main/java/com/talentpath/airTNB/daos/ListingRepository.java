@@ -18,4 +18,5 @@ public interface ListingRepository extends JpaRepository<Listing, Integer> {
 
     @Query("SELECT l FROM Listing l WHERE LOWER(l.location.city) = LOWER(:city) AND LOWER(l.location.state) = LOWER(:state)")
     List<Listing> findAllByLocationCityState(String city, String state);
+
 }

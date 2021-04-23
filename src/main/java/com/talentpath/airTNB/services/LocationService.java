@@ -4,7 +4,9 @@ package com.talentpath.airTNB.services;
 import com.talentpath.airTNB.controllers.ListingController;
 import com.talentpath.airTNB.daos.ListingRepository;
 import com.talentpath.airTNB.daos.LocationRepository;
+import com.talentpath.airTNB.exceptions.NullListingException;
 import com.talentpath.airTNB.exceptions.NullLocationException;
+import com.talentpath.airTNB.exceptions.NullLocationFieldException;
 import com.talentpath.airTNB.models.LatLongRequest;
 import com.talentpath.airTNB.models.Listing;
 import com.talentpath.airTNB.models.Location;
@@ -40,17 +42,18 @@ public class LocationService {
 
     public List<Location> getAllLocations(){return locationRepo.findAll();}
 
-    public Location addLocation(LatLongRequest latLongRequest, Integer listingId) throws NullLocationException {
-        Optional<Listing> listing = listingRepo.findById(listingId);
-        Location toAddLocation = new Location();
-        if(listing.isPresent()){
-            toAddLocation.setListing(listing.get());
-            toAddLocation.setLatitude(latLongRequest.getLatitude());
-            toAddLocation.setLongitude(latLongRequest.getLongitude());
-            return locationRepo.saveAndFlush(toAddLocation);
-        }else{
-            throw new NullLocationException("In LocationService, for method addLocation, no listing found with id: " + listingId);
-        }
+    public Location addLocation(Location toAddLocation) throws NullLocationException, NullLocationFieldException {
+      if(toAddLocation==null){
+          throw new NullLocationException("in LocationService, for addLocation(), locationToAdd object can't be null");
+      }else if(toAddLocation.getCity()==null ||toAddLocation.getState()==null || toAddLocation.getLatitude() ==null || toAddLocation.getLongitude()==null){
+          throw new NullLocationFieldException("City, State, Latitude, and Longitude fields cannot be null or blank!");
+      }else{
+          return locationRepo.saveAndFlush(toAddLocation);
+      }
     }
+
+
+
+
 
 }

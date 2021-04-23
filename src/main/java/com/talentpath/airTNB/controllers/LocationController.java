@@ -2,6 +2,7 @@ package com.talentpath.airTNB.controllers;
 
 import com.talentpath.airTNB.exceptions.NullLocationException;
 
+import com.talentpath.airTNB.exceptions.NullLocationFieldException;
 import com.talentpath.airTNB.models.LatLongRequest;
 
 import com.talentpath.airTNB.models.Location;
@@ -31,9 +32,9 @@ public class LocationController {
 
 
 
-    @PostMapping("/add/{listingId}")
-    public Location addLocation(@RequestBody LatLongRequest latLongRequest, @PathVariable Integer listingId) throws NullLocationException {
-        return locationServ.addLocation(latLongRequest, listingId);
+    @PostMapping("/add")
+    public Location addLocation(Location location) throws NullLocationException, NullLocationFieldException {
+        return locationServ.addLocation(location);
     }
 
 
