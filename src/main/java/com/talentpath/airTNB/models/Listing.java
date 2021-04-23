@@ -127,6 +127,4 @@ public class Listing {
     public void setDescription(Description description){
         this.description = description;
     }
-
-
 }
