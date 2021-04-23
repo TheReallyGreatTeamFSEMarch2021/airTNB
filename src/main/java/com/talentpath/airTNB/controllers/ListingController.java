@@ -5,8 +5,10 @@ import com.talentpath.airTNB.models.Listing;
 import com.talentpath.airTNB.models.Test;
 import com.talentpath.airTNB.services.ListingService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 @RestController
@@ -30,5 +32,15 @@ public class ListingController {
     @PostMapping("/add")
     public Listing addListing(@RequestBody Listing toAdd){
         return listingService.addListing(toAdd);
+    }
+
+    @GetMapping("/getListingsByCityAndState/{listingId}")
+    public List<Listing> getListingsByCityAndState(@PathVariable Integer listingId) throws NullListingException {
+        return listingService.getListingsByCityAndState(listingId);
+    }
+
+    @GetMapping("/getListingsCloseByLatAndLong/{listingId}")
+    public List<Listing> getByLatAndLong(@PathVariable Integer listingId)throws NullListingException{
+        return listingService.getListingsByLatAndLong(listingId);
     }
 }

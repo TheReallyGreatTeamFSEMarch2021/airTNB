@@ -13,6 +13,25 @@ public class Host {
 
     @OneToMany(mappedBy = "host", cascade = CascadeType.ALL)
     private List<Listing> listings;
+    
+    private String hostEmail;
+    private String hostImageURL;
 
-
+    public Host(){}
+    public Host(String hostEmail, String hostImageURL){
+        this.hostEmail = hostEmail;
+        this.hostImageURL = hostImageURL;
+    }
+    public String getHostEmail() {
+        return hostEmail;
+    }
+    public void setHostEmail(String hostEmail) {
+            this.hostEmail = hostEmail;
+    }
+    public String getHostImageURL() {
+        return hostImageURL;
+    }
+    public void setHostImageURL(String hostImageURL) {
+        this.hostImageURL = hostImageURL;
+    }
 }
