@@ -11,7 +11,7 @@ import java.util.Optional;
 @CrossOrigin
 @RequestMapping("/api/price")
 public class PriceController {
-        // Call service
+
         @Autowired
         PriceService priceService;
 
