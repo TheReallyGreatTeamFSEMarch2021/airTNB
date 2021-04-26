@@ -1,30 +1,32 @@
 package com.talentpath.airTNB.models;
-
-import javax.annotation.Generated;
 import javax.persistence.*;
-import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name="price")
+@Table(name="prices")
 public class Price {
     @Id
     @GeneratedValue
-    @Column(name = "priceId")
     private Integer id;
-    /*
-    // Not sure if this is the right way.
-    @OneToOne(mappedBy = "id")
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JsonIgnore
     private Listing listing;
-    //*/
+
     private  float price;
+    public Price(){
+        
+    }
 
     public Price(float price) {
         this.price = price;
     }
-    @Override
-    public String toString() {
-        return "Price{" +
-                "price=" + price +
-                '}';
+    public float getPrice(){
+        return price;
+    }
+
+    public void setPrice(float price){
+        this.price = price;
     }
 }

@@ -46,13 +46,17 @@ public class Listing {
     @OneToOne(cascade = CascadeType.ALL)
     private Description description;
 
-    public Listing(String title, String subTitle, Host host, List<Review> reviews, List<Photo> photos){
+    @OneToOne(cascade = CascadeType.ALL)
+    private Price price;
+
+    public Listing(String title, String subTitle, Host host, List<Review> reviews, List<Photo> photos, Description description, Price price){
         this.title = title;
         this.subTitle = subTitle;
         this.host = host;
         this.reviews = reviews;
         this.photos = photos;
         this.description = description;
+        this.price = price;
     }
 
     public Listing(){
@@ -126,5 +130,11 @@ public class Listing {
     }
     public void setDescription(Description description){
         this.description = description;
+    }
+    public Price getPrice(){
+        return price;
+    }
+    public void setPrice(Price price){
+        this.price = price;
     }
 }

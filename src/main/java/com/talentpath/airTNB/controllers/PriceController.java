@@ -14,21 +14,14 @@ public class PriceController {
         // Call service
         @Autowired
         PriceService priceService;
-    
-        // This will be removed at some point.
-        @GetMapping("/test/{id}")
-        public String getTest(@PathVariable Integer id){
-            return "Current ID: " + id;
-        }
 
-        @GetMapping("/price/{id}")
+        @GetMapping("/{id}")
         public Optional<Price> getPrice (@PathVariable Integer id){
                 return priceService.getPrice(id);
         }
 
-        @PostMapping("/price")
+        @PostMapping("/add")
         public Price postPrice (@RequestBody Price newPrice){
-                System.out.println(newPrice.toString());
-                return PriceService.setPrice(newPrice);
+                return priceService.setPrice(newPrice);
         }
 }
