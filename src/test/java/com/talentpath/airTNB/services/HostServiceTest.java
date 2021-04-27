@@ -1,6 +1,7 @@
 package com.talentpath.airTNB.services;
 
 import com.talentpath.airTNB.daos.HostRepository;
+import com.talentpath.airTNB.exceptions.InvalidIdException;
 import com.talentpath.airTNB.models.Host;
 import com.talentpath.airTNB.models.Listing;
 import org.junit.jupiter.api.BeforeEach;
@@ -74,6 +75,36 @@ class HostServiceTest {
 
     @Test
     @Transactional
+    void getHostByIdWrongId() {
+        try {
+            Host host = hostService.getHostById(12);
+            fail("No exception caught.");
+        }
+        catch (InvalidIdException ignored) {
+
+        }
+        catch(Exception e) {
+            fail("Wrong exception caught: " + e.getClass() + " " + e.getMessage());
+        }
+    }
+
+    @Test
+    @Transactional
+    void getHostByIdNullId() {
+        try {
+            Host host = hostService.getHostById(null);
+            fail("No exception caught.");
+        }
+        catch(IllegalArgumentException ignored) {
+
+        }
+        catch(Exception e) {
+            fail("Wrong exception caught: " + e.getClass() + " " + e.getMessage());
+        }
+    }
+
+    @Test
+    @Transactional
     void addHost() {
         Host host = new Host();
         host.setSuperHost(false);
@@ -97,6 +128,20 @@ class HostServiceTest {
         }
         catch (Exception e) {
             fail("Exception caught during golden path test: " + e.getClass() + " " + e.getMessage());
+        }
+    }
+
+    @Test
+    @Transactional
+    void addHostNullHost() {
+        try{
+            hostService.addHost(null);
+        }
+        catch(IllegalArgumentException ignored) {
+
+        }
+        catch (Exception e) {
+            fail("Wrong exception caught: " + e.getClass() + " " + e.getMessage());
         }
     }
 }

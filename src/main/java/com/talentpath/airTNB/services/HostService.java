@@ -19,12 +19,14 @@ public class HostService {
     }
 
     public Host getHostById(Integer id) throws InvalidIdException {
+        if(id==null) throw new IllegalArgumentException("The given id must not be null!");
         Optional<Host> ans = hostRepository.findById(id);
         if(ans.isPresent()) return ans.get();
         else throw new InvalidIdException("No Host with id: " + id);
     }
 
     public Host addHost(Host toAdd) {
+        if(toAdd==null) throw new IllegalArgumentException("Host must not be null!");
         return hostRepository.saveAndFlush(toAdd);
     }
 }
