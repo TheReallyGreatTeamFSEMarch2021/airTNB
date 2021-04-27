@@ -131,5 +131,5 @@ public class ReviewTest {
         assertEquals("zzz", reviewsForListingTwo.get(2).getContent());
 
     }
-    
+
 }
