@@ -22,6 +22,12 @@ public class Listing {
 
     private String subTitle;
 
+    private Integer freeCancellationDays;
+
+    private Integer cancellationRefundPercentage;
+
+    private Integer paidCancellationDays;
+
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="host_id")
@@ -30,8 +36,8 @@ public class Listing {
     @OneToMany(mappedBy = "listing", cascade = CascadeType.ALL)
     private List<Review> reviews;
 
-    @OneToMany(mappedBy = "listing", cascade = CascadeType.ALL)
     @JsonIgnore
+    @OneToMany(mappedBy = "listing", cascade = CascadeType.ALL)
     private List<Photo>  photos;
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -42,13 +48,18 @@ public class Listing {
     @OneToMany(mappedBy = "listing", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Room>  rooms;
-
+    
     @OneToOne(cascade = CascadeType.ALL)
     private Description description;
 
     @OneToOne(cascade = CascadeType.ALL)
     private Price price;
 
+    @OneToOne(mappedBy = "listing",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY)
+    private RuleList ruleList;
+    
     public Listing(String title, String subTitle, Host host, List<Review> reviews, List<Photo> photos, Description description, Price price){
         this.title = title;
         this.subTitle = subTitle;
@@ -64,6 +75,30 @@ public class Listing {
 
     public Integer getId() {
         return id;
+    }
+
+    public Integer getFreeCancellationDays() {
+        return freeCancellationDays;
+    }
+
+    public void setFreeCancellationDays(Integer freeCancellationDays) {
+        this.freeCancellationDays = freeCancellationDays;
+    }
+
+    public Integer getCancellationRefundPercentage() {
+        return cancellationRefundPercentage;
+    }
+
+    public void setCancellationRefundPercentage(Integer cancellationRefundPercentage) {
+        this.cancellationRefundPercentage = cancellationRefundPercentage;
+    }
+
+    public Integer getPaidCancellationDays() {
+        return paidCancellationDays;
+    }
+
+    public void setPaidCancellationDays(Integer paidCancellationDays) {
+        this.paidCancellationDays = paidCancellationDays;
     }
 
     public void setId(Integer id) {
@@ -125,6 +160,15 @@ public class Listing {
     public void setRooms(List<Room> rooms) {
         this.rooms = rooms;
     }
+
+    public RuleList getRuleList() {
+        return ruleList;
+    }
+
+    public void setRuleList(RuleList ruleList) {
+        this.ruleList = ruleList;
+    }
+
     public Description getDescription(){
         return description;
     }

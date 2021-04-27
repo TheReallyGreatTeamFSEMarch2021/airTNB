@@ -60,4 +60,8 @@ public class ListingService {
             throw new NullListingException("No listing exists with id: " + listingId);
         }
     }
+
+    public void truncateListingTable(){
+        listingRepository.deleteAll();
+    }
 }

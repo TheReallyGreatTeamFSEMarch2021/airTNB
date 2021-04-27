@@ -30,7 +30,6 @@ public class Location {
     @OneToOne(mappedBy = "location")
     private Listing listing;
 
-
     @OneToMany(mappedBy="location", cascade=CascadeType.ALL)
     private List<AboutLocation> locationInfos;
 
@@ -86,7 +85,7 @@ public class Location {
     public void setState(String state) {
         this.state = state;
     }
-
+  
     public Listing getListing() {
         return listing;
     }
