@@ -14,4 +14,10 @@ public class ErrorHandler {
     public String errorMessageOnInvalidIdException(InvalidIdException ex, WebRequest request) {
         return request.toString() + "an error occurred: " + ex.getMessage();
     }
+
+    @ExceptionHandler(value = IllegalArgumentException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public String errorMessageOnIllegalArgumentException(IllegalArgumentException ex, WebRequest request) {
+        return request.toString() + "an error occurred: " + ex.getMessage();
+    }
 }
