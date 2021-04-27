@@ -75,10 +75,61 @@ public class ReviewTest {
     @Transactional
     void getReviewsByListingId(){
 
-        Listing listing = new Listing();
-        listingRepo.saveAndFlush(listing);
+        Listing listingOne = new Listing();
+        listingRepo.saveAndFlush(listingOne);
+
+        Review review1 = new Review();
+        review1.setStarValue(5);
+        review1.setUserFirstName("Matt");
+        review1.setListing(listingOne);
+        reviewRepo.saveAndFlush(review1);
+
+        Review review2 = new Review();
+        review2.setStarValue(1);
+        review2.setUserFirstName("Bob");
+        review2.setListing(listingOne);
+        reviewRepo.save(review2);
+
+        List<Review> reviewsForListingOne = reviewRepo.findByListingId(listingOne.getId());
+
+        assertEquals("Matt",reviewsForListingOne.get(0).getUserFirstName());
+        assertEquals(5, reviewsForListingOne.get(0).getStarValue());
+
+        assertEquals("Bob",reviewsForListingOne.get(1).getUserFirstName());
+        assertEquals(1, reviewsForListingOne.get(1).getStarValue());
+
+        Listing listingTwo = new Listing();
+        listingRepo.saveAndFlush(listingTwo);
+
+        Review review3 = new Review();
+        review3.setStarValue(3);
+        review3.setContent("abcdefg");
+        review3.setListing(listingTwo);
+        reviewRepo.saveAndFlush(review3);
+
+        Review review4 = new Review();
+        review4.setStarValue(2);
+        review4.setContent("qwerty");
+        review4.setListing(listingTwo);
+        reviewRepo.saveAndFlush(review4);
+
+        Review review5 = new Review();
+        review5.setStarValue(4);
+        review5.setContent("zzz");
+        review5.setListing(listingTwo);
+        reviewRepo.saveAndFlush(review5);
+
+        List<Review> reviewsForListingTwo = reviewRepo.findByListingId(listingTwo.getId());
+
+        assertEquals(3, reviewsForListingTwo.get(0).getStarValue());
+        assertEquals("abcdefg", reviewsForListingTwo.get(0).getContent());
+
+        assertEquals(2, reviewsForListingTwo.get(1).getStarValue());
+        assertEquals("qwerty", reviewsForListingTwo.get(1).getContent());
+
+        assertEquals(4, reviewsForListingTwo.get(2).getStarValue());
+        assertEquals("zzz", reviewsForListingTwo.get(2).getContent());
 
     }
-
-
+    
 }
