@@ -15,7 +15,6 @@ public class PriceServiceTest {
     @Autowired
     private PriceController controller;
 
-
     @Test
     public void addPriceShouldReturnPrice (){
         Price newPrice = new Price((float) 1.23);
@@ -24,6 +23,7 @@ public class PriceServiceTest {
     }
     @Test
     public void getPriceShouldReturnPrice(){
-        
+        // Need to figure this out.
     }
+  
 }
