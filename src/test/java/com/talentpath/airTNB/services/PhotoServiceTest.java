@@ -52,7 +52,7 @@ class PhotoServiceTest {
         assertEquals("testurl1", photoToTest.getUrl());
     }
 
-    //using the 2 listings that are already in the test DB
+    //using the 2(id = 5,6) listings that are already in the test DB
     //will need to be updated if those test listings are removed
     @Test
     @Transactional
