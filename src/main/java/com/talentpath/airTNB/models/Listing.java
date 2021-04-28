@@ -27,7 +27,9 @@ public class Listing {
     private Integer cancellationRefundPercentage;
 
     private Integer paidCancellationDays;
-
+    
+    private Price price;
+    
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="host_id")
@@ -51,9 +53,6 @@ public class Listing {
     
     @OneToOne(cascade = CascadeType.ALL)
     private Description description;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    private Price price;
 
     @OneToOne(mappedBy = "listing",
             cascade = CascadeType.ALL,
