@@ -3,6 +3,7 @@ package com.talentpath.airTNB.services;
 import com.talentpath.airTNB.daos.AmenityRepository;
 import com.talentpath.airTNB.daos.ListingRepository;
 import com.talentpath.airTNB.daos.LocationRepository;
+import com.talentpath.airTNB.models.Host;
 import com.talentpath.airTNB.models.Listing;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,18 +22,21 @@ class ListingServiceTest {
 
     @Autowired
     ListingRepository listingRepo;
-    @Autowired
-    AmenityRepository amenityRepo;
+
 
 
     @BeforeEach
     void deleteAllItems(){
-        amenityRepo.deleteAll();
         listingRepo.deleteAll();
+        listingRepo.reset();
     }
 
     @Test
     void getAllListings() {
+        Listing list1 = new Listing("test title1","test subtitle1", null,null,null);
+        Listing list2 = new Listing("test title2","test subtitle2",
+                new Host(true,false,"a host for testing",null),null,null);
+        Listing list3 = new Listing("test title3","test subtitle3", null,null,null);
     }
 
     @Test
