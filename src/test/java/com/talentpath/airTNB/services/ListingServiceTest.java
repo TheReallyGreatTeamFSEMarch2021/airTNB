@@ -63,7 +63,6 @@ class ListingServiceTest {
                 return o1.getId()-o2.getId();
             }
         });
-        allListings.forEach(listing -> System.out.println(listing.getId()));
         for (int i = 0; i < 3; i++) {
             assertEquals(original.get(i).getTitle(),allListings.get(i).getTitle());
             assertEquals(original.get(i).getSubTitle(),allListings.get(i).getSubTitle());
