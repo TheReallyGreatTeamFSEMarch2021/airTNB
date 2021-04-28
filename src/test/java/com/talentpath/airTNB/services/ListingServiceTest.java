@@ -87,14 +87,18 @@ class ListingServiceTest {
     }
 
     @Test
+    @Transactional
     void getListingById() {
         Listing test = new Listing("test title2","test subtitle2",
                 new Host(true,false,"a host for testing2",null),null,null);
+        test.setFreeCancellationDays(5);
+        test.setCancellationRefundPercentage(12);
         listingRepo.saveAndFlush(test);
+
         Listing retrieved =  listingRepo.findById(1).get();
         //only testing non object fields here, could add more testing data
         assertEquals(test.getTitle(),retrieved.getTitle());
-        assertEquals(test.getPaidCancellationDays(),retrieved.getFreeCancellationDays());
+        assertEquals(test.getFreeCancellationDays(),retrieved.getFreeCancellationDays());
         assertEquals(test.getCancellationRefundPercentage(),retrieved.getCancellationRefundPercentage());
         assertEquals(test.getSubTitle(),retrieved.getSubTitle());
         assertEquals(1,retrieved.getId());
