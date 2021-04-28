@@ -4,6 +4,7 @@ import com.talentpath.airTNB.daos.ListingRepository;
 import com.talentpath.airTNB.daos.RoomRepository;
 import com.talentpath.airTNB.exceptions.NullListingException;
 import com.talentpath.airTNB.models.Listing;
+import com.talentpath.airTNB.models.Photo;
 import com.talentpath.airTNB.models.Room;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -23,32 +24,31 @@ class RoomServiceTest {
 
     @Autowired
     RoomService roomService;
-
     @Autowired
     RoomRepository roomRepository;
-
     @Autowired
     ListingRepository listingRepository;
 
     @BeforeEach
     @Transactional
     void setUp() {
+        listingRepository.deleteAll();
+        listingRepository.reset();
         roomRepository.deleteAll();
         roomRepository.reset();
-
-        Room room1 = new Room();
-        room1.setType("bedroom");
-        room1.setName("bedroom 1");
-
-        Listing listing = new Listing();
-        listing.setTitle("listing1");
-        room1.setListing(listing);
-        roomRepository.saveAndFlush(room1);
     }
 
     @Test
     @Transactional
     void getAllRooms(){
+        Room room1 = new Room();
+        room1.setType("bedroom");
+        room1.setName("bedroom 1");
+        Listing listing = new Listing();
+        listing.setTitle("listing1");
+        room1.setListing(listing);
+        roomRepository.saveAndFlush(room1);
+
         List<Room> allRooms = roomService.getAllRooms();
         Room roomToTest = allRooms.get(0);
         assertEquals(1,roomToTest.getId());
@@ -56,36 +56,40 @@ class RoomServiceTest {
         assertEquals("bedroom 1", roomToTest.getName());
     }
 
-    //using the 2(id = 5,6) listings that are already in the test DB
-    //will need to be updated if those test listings are removed
     @Test
     @Transactional
     void getRoomsByListingId(){
-        Room room2 = new Room();
-        room2.setName("bedroom x");
-
-        Room room3 = new Room();
-        room3.setName("bedroom y");
-
         Listing listing1 = new Listing();
         listing1.setTitle("listing1");
-        listing1.setId(1);
-
         Listing listing2 = new Listing();
         listing1.setTitle("listing2");
-        listing2.setId(2);
+        listingRepository.saveAndFlush(listing1);
+        listingRepository.saveAndFlush(listing2);
 
-        room2.setListing(listing1);
-        room3.setListing(listing2);
+        Room room1 = new Room();
+        room1.setName("bedroom x");
+        Room room2 = new Room();
+        room2.setName("bedroom y");
+        room1.setListing(listing1);
+        room2.setListing(listing2);
 
-        roomRepository.saveAndFlush(room2);
-        roomRepository.saveAndFlush(room3);
+        try{
+            roomService.attachListing(room1, 1);
+            roomService.attachListing(room2, 2);
 
-        List<Room> rooms5 = roomService.getByListingId(1);
-        List<Room> rooms6 = roomService.getByListingId(2);
+            roomRepository.saveAndFlush(room1);
+            roomRepository.saveAndFlush(room2);
 
-        assertEquals("bedroom x", rooms5.get(0).getName());
-        assertEquals("bedroom y", rooms6.get(0).getName());
+            List<Room> rooms1 = roomService.getByListingId(1);
+            List<Room> rooms2 = roomService.getByListingId(2);
+
+            assertEquals("bedroom x", rooms1.get(0).getName());
+            assertEquals("bedroom y", rooms2.get(0).getName());
+
+        }
+        catch (NullListingException ex){
+            fail("Failed to attach listing to photo");
+        }
 
     }
 
