@@ -67,9 +67,11 @@ public class ActivityTests {
         Activity activity2 = new Activity();
         activityRepo.saveAndFlush(activity2);
 
-        activities = activityRepo.findAll();
-        assertEquals(2,activities.get(1).getId());
-        assertEquals(3,activities.get(2).getId());
+        Activity activity1Check = activityRepo.findById(2).get();
+        assertEquals(activity1, activity1Check);
+
+        Activity activity2Check = activityRepo.findById(3).get();
+        assertEquals(activity2, activity2Check);
     }
 
     @Test
@@ -118,18 +120,20 @@ public class ActivityTests {
         List<Activity> activitiesInHouston = activityRepo.findByCity("Houston");
 
         assertEquals(4,activitiesInHouston.size());
-        assertEquals(22, activitiesInHouston.get(1).getPrice());
-        assertEquals(33, activitiesInHouston.get(2).getPrice());
-        assertEquals(44, activitiesInHouston.get(3).getPrice());
+        activitiesInHouston.stream().forEach(activity -> assertEquals("Houston", activity.getCity()));
 
         List<Activity> activitiesInSF = activityRepo.findByCity("San Francisco");
         assertEquals(2, activitiesInSF.size());
+        activitiesInSF.stream().forEach(activity -> assertEquals("San Francisco", activity.getCity()));
 
         List<Activity> activitiesInSLC = activityRepo.findByCity("Salt Lake City");
         assertEquals(1, activitiesInSLC.size());
+        activitiesInSLC.stream().forEach(activity -> assertEquals("Salt Lake City", activity.getCity()));
 
         List<Activity> activitiesInSac = activityRepo.findByCity("Sacramento");
         assertEquals(2, activitiesInSac.size());
+        activitiesInSac.stream().forEach(activity -> assertEquals("Sacramento", activity.getCity()));
+
 
 
 
