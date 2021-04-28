@@ -3,6 +3,7 @@ package com.talentpath.airTNB.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javassist.runtime.Desc;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import javax.validation.constraints.Digits;
@@ -29,7 +30,8 @@ public class Listing {
     private Integer paidCancellationDays;
 
     @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY,
+                cascade=CascadeType.ALL)
     @JoinColumn(name="host_id")
     private Host host;
 
