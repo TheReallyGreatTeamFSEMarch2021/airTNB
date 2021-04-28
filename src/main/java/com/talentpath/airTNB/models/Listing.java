@@ -28,7 +28,7 @@ public class Listing {
 
     private Integer paidCancellationDays;
     
-    private Price price;
+    private float price;
     
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
@@ -59,7 +59,7 @@ public class Listing {
             fetch = FetchType.LAZY)
     private RuleList ruleList;
     
-    public Listing(String title, String subTitle, Host host, List<Review> reviews, List<Photo> photos, Description description, Price price){
+    public Listing(String title, String subTitle, Host host, List<Review> reviews, List<Photo> photos, Description description, float price){
         this.title = title;
         this.subTitle = subTitle;
         this.host = host;
@@ -174,10 +174,10 @@ public class Listing {
     public void setDescription(Description description){
         this.description = description;
     }
-    public Price getPrice(){
+    public float getPrice(){
         return price;
     }
-    public void setPrice(Price price){
+    public void setPrice(Float price){
         this.price = price;
     }
 }
