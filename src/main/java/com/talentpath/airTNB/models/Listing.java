@@ -28,7 +28,9 @@ public class Listing {
     private Integer cancellationRefundPercentage;
 
     private Integer paidCancellationDays;
-
+    
+    private float price;
+    
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY,
                 cascade=CascadeType.ALL)
@@ -58,13 +60,15 @@ public class Listing {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY)
     private RuleList ruleList;
-
-    public Listing(String title, String subTitle, Host host, List<Review> reviews, List<Photo> photos){
+    
+    public Listing(String title, String subTitle, Host host, List<Review> reviews, List<Photo> photos, Description description, float price){
         this.title = title;
         this.subTitle = subTitle;
         this.host = host;
         this.reviews = reviews;
         this.photos = photos;
+        this.description = description;
+        this.price = price;
     }
 
     public Listing(){
@@ -171,5 +175,11 @@ public class Listing {
     }
     public void setDescription(Description description){
         this.description = description;
+    }
+    public float getPrice(){
+        return price;
+    }
+    public void setPrice(Float price){
+        this.price = price;
     }
 }
