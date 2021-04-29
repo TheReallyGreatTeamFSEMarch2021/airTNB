@@ -71,6 +71,14 @@ public class Listing {
         this.price = price;
     }
 
+    public Listing(String title, String subTitle, Host host, List<Review> reviews, List<Photo> photos){
+        this.title = title;
+        this.subTitle = subTitle;
+        this.host = host;
+        this.reviews = reviews;
+        this.photos = photos;
+    }
+
     public Listing(){
     }
 
