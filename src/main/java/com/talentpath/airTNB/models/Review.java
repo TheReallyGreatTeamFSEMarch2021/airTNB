@@ -18,6 +18,7 @@ public class Review {
     @JsonIgnore
     @ManyToOne(fetch= FetchType.LAZY)
     @NotBlank
+    @JoinColumn(name = "listing_id")
     private Listing listing;
 
     private String title;

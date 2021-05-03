@@ -44,8 +44,9 @@ public class Listing {
     @OneToMany(mappedBy = "listing", cascade = CascadeType.ALL)
     private List<Photo>  photos;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "location_id", referencedColumnName = "id")
+    @OneToOne(cascade = CascadeType.ALL,
+    fetch = FetchType.LAZY,
+    mappedBy = "listing")
     @NotBlank
     private Location location;
 
@@ -60,6 +61,11 @@ public class Listing {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY)
     private RuleList ruleList;
+
+    @OneToOne(mappedBy = "listing",
+    cascade = CascadeType.ALL,
+    fetch = FetchType.LAZY)
+    private HealthAndSafetyInfo healthAndSafetyInfo;
     
     public Listing(String title, String subTitle, Host host, List<Review> reviews, List<Photo> photos, Description description, float price){
         this.title = title;
@@ -189,5 +195,13 @@ public class Listing {
     }
     public void setPrice(Float price){
         this.price = price;
+    }
+
+    public HealthAndSafetyInfo getHealthAndSafetyInfo() {
+        return healthAndSafetyInfo;
+    }
+
+    public void setHealthAndSafetyInfo(HealthAndSafetyInfo healthAndSafetyInfo) {
+        this.healthAndSafetyInfo = healthAndSafetyInfo;
     }
 }
