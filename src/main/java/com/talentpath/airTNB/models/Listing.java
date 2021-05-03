@@ -44,8 +44,9 @@ public class Listing {
     @OneToMany(mappedBy = "listing", cascade = CascadeType.ALL)
     private List<Photo>  photos;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "location_id", referencedColumnName = "id")
+    @OneToOne(cascade = CascadeType.ALL,
+    fetch = FetchType.LAZY,
+    mappedBy = "listing")
     @NotBlank
     private Location location;
 
