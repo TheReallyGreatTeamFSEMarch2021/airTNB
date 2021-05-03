@@ -19,6 +19,7 @@ public class HealthAndSafetyInfo {
     private String sharedSpaces;
     private String stairs;
     private String parkingInfo;
+    private String cameraInfo;
 
     @OneToOne(fetch= FetchType.LAZY)
     @JoinColumn(name="listing_id")
@@ -119,4 +120,14 @@ public class HealthAndSafetyInfo {
     public void setListing(Listing listing) {
         this.listing = listing;
     }
+
+
+    public String getCameraInfo() {
+        return cameraInfo;
+    }
+
+    public void setCameraInfo(String cameraInfo) {
+        this.cameraInfo = cameraInfo;
+    }
+
 }
