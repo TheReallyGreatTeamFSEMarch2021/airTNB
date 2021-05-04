@@ -27,8 +27,8 @@ public class Location {
     private String state;
 
     @JsonIgnore
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="listing_id")
+    @OneToOne(fetch = FetchType.LAZY,
+    mappedBy = "location")
     private Listing listing;
 
     @OneToMany(mappedBy="location", cascade=CascadeType.ALL)
