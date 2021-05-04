@@ -40,7 +40,6 @@ public class Listing {
     @OneToMany(mappedBy = "listing", cascade = CascadeType.ALL)
     private List<Review> reviews;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "listing", cascade = CascadeType.ALL)
     private List<Photo>  photos;
 
@@ -51,7 +50,6 @@ public class Listing {
     private Location location;
 
     @OneToMany(mappedBy = "listing", cascade = CascadeType.ALL)
-    @JsonIgnore
     private List<Room>  rooms;
     
     @OneToOne(cascade = CascadeType.ALL)
