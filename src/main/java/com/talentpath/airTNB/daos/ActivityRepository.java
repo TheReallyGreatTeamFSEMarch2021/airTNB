@@ -12,6 +12,8 @@ import java.util.List;
 public interface ActivityRepository extends JpaRepository<Activity, Integer> {
 
     List<Activity> findByCity(String city);
+    
+    List<Activity> findByCityContainsAndRegionContains(String city, String region);
 
     @Modifying
     @Query(
