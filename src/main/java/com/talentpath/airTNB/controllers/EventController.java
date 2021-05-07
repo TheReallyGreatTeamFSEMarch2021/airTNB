@@ -2,6 +2,7 @@ package com.talentpath.airTNB.controllers;
 
 import com.talentpath.airTNB.models.Event;
 import com.talentpath.airTNB.services.EventService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,6 +35,11 @@ public class EventController {
     @RequestMapping(value = "{id}",method = RequestMethod.DELETE)
     public void delete(@PathVariable Integer id) {
         eventServ.deleteEvent(id);
+    }
+
+    @RequestMapping(value = "{id}",method = RequestMethod.PUT)
+    public Event update(@PathVariable Integer id, @RequestBody Event event) {
+        return eventServ.editEvent(event,id);
     }
 
 }
