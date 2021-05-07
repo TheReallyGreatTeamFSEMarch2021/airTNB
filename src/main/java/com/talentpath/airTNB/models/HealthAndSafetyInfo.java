@@ -20,6 +20,8 @@ public class HealthAndSafetyInfo {
     private String stairs;
     private String parkingInfo;
     private String cameraInfo;
+    private String animalsInfo;
+    private String noiseInfo;
 
     @OneToOne(fetch= FetchType.LAZY)
     @JoinColumn(name="listing_id")
@@ -121,7 +123,6 @@ public class HealthAndSafetyInfo {
         this.listing = listing;
     }
 
-
     public String getCameraInfo() {
         return cameraInfo;
     }
@@ -129,5 +130,22 @@ public class HealthAndSafetyInfo {
     public void setCameraInfo(String cameraInfo) {
         this.cameraInfo = cameraInfo;
     }
+
+    public String getAnimalsInfo() {
+        return animalsInfo;
+    }
+
+    public void setAnimalsInfo(String animalsInfo) {
+        this.animalsInfo = animalsInfo;
+    }
+
+    public String getNoiseInfo() {
+        return noiseInfo;
+    }
+
+    public void setNoiseInfo(String noiseInfo) {
+        this.noiseInfo = noiseInfo;
+    }
+
 
 }
