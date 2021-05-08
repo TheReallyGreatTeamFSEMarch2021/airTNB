@@ -15,7 +15,7 @@ public class Event {
     @GeneratedValue( strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @JsonIgnore
+    
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="listing_id")
     @NotBlank
