@@ -19,6 +19,7 @@ public class EventService {
     }
 
     public Event addEvent(Event event) {
+
         return eventDao.saveAndFlush(event);
     }
 
