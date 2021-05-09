@@ -21,14 +21,22 @@ public class EventController {
         return events;
     }
 
+    @GetMapping("/")
+    public List<Event> getAllEvents() {
+        List<Event> events = eventServ.getAllEvents();
+        return events;
+    }
+
     @GetMapping
     @RequestMapping("{id}")
     public Event get(@PathVariable Integer id) {
+
         return eventServ.getEvent(id);
     }
 
     @PostMapping
     public Event add(@RequestBody final Event event) {
+
         return eventServ.addEvent(event);
     }
 
