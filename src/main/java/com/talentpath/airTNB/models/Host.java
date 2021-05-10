@@ -14,6 +14,12 @@ public class Host {
     private Boolean verified;
     private Boolean superHost;
     private String description;
+    private String name;
+    private Integer responseRate;
+    private String responseTime;
+    private String duringYourStay;
+    private String languages;
+
 
     @OneToMany(mappedBy = "host", cascade = CascadeType.ALL)
     private List<Listing> listings;
@@ -85,5 +91,53 @@ public class Host {
     }
     public void setHostImageURL(String hostImageURL) {
         this.hostImageURL = hostImageURL;
+    }
+
+    public Boolean getVerified() {
+        return verified;
+    }
+
+    public Boolean getSuperHost() {
+        return superHost;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Integer getResponseRate() {
+        return responseRate;
+    }
+
+    public void setResponseRate(Integer responseRate) {
+        this.responseRate = responseRate;
+    }
+
+    public String getResponseTime() {
+        return responseTime;
+    }
+
+    public void setResponseTime(String responseTime) {
+        this.responseTime = responseTime;
+    }
+
+    public String getDuringYourStay() {
+        return duringYourStay;
+    }
+
+    public void setDuringYourStay(String duringYourStay) {
+        this.duringYourStay = duringYourStay;
+    }
+
+    public String getLanguages() {
+        return languages;
+    }
+
+    public void setLanguages(String languages) {
+        this.languages = languages;
     }
 }

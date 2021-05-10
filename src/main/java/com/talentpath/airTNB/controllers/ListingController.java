@@ -1,6 +1,8 @@
 package com.talentpath.airTNB.controllers;
 
+import com.talentpath.airTNB.exceptions.InvalidIdException;
 import com.talentpath.airTNB.exceptions.NullListingException;
+import com.talentpath.airTNB.models.Host;
 import com.talentpath.airTNB.models.Listing;
 import com.talentpath.airTNB.models.Test;
 import com.talentpath.airTNB.services.ListingService;
@@ -42,5 +44,10 @@ public class ListingController {
     @GetMapping("/getListingsCloseByLatAndLong/{listingId}")
     public List<Listing> getByLatAndLong(@PathVariable Integer listingId)throws NullListingException{
         return listingService.getListingsByLatAndLong(listingId);
+    }
+
+    @GetMapping("/getHost/{listingId}")
+    public Host getHostByListingId(@PathVariable Integer listingId) throws InvalidIdException {
+        return listingService.getHostByListingId(listingId);
     }
 }

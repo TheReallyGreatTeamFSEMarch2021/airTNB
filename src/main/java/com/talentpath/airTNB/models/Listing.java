@@ -32,7 +32,7 @@ public class Listing {
     private float price;
     
     @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY,
+    @ManyToOne(fetch = FetchType.EAGER,
                 cascade=CascadeType.ALL)
     @JoinColumn(name="host_id")
     private Host host;
