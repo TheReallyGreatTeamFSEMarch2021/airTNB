@@ -1,7 +1,10 @@
 package com.talentpath.airTNB.services;
 
+import com.talentpath.airTNB.daos.HostRepository;
 import com.talentpath.airTNB.daos.ListingRepository;
+import com.talentpath.airTNB.exceptions.InvalidIdException;
 import com.talentpath.airTNB.exceptions.NullListingException;
+import com.talentpath.airTNB.models.Host;
 import com.talentpath.airTNB.models.Listing;
 import com.talentpath.airTNB.models.Location;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +19,8 @@ import java.util.Optional;
 public class ListingService {
     @Autowired
     ListingRepository listingRepository;
+    @Autowired
+    HostRepository hostRepository;
 
     public List<Listing> getAllListings(){
         return listingRepository.findAll();
@@ -59,5 +64,15 @@ public class ListingService {
         }else{
             throw new NullListingException("No listing exists with id: " + listingId);
         }
+    }
+
+    public void truncateListingTable(){
+        listingRepository.deleteAll();
+    }
+
+    public Host getHostByListingId(Integer listingId) throws InvalidIdException {
+        Optional<Listing> listing = listingRepository.findById(listingId);
+        if(listing.isPresent()) return listing.get().getHost();
+        else throw new InvalidIdException("No listing with Id: " + listingId + " exists!");
     }
 }

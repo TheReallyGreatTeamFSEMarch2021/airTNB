@@ -15,7 +15,7 @@ public interface ReviewRepository extends JpaRepository<Review, Integer> {
 
     @Modifying
     @Query(
-            value = "truncate reviews restart identity cascade",
+            value = "alter table reviews auto_increment=1",
             nativeQuery = true
     )
     void reset();

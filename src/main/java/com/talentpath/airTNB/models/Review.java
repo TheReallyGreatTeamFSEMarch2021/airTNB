@@ -1,6 +1,7 @@
 package com.talentpath.airTNB.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.apache.tomcat.jni.Local;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -17,6 +18,7 @@ public class Review {
     @JsonIgnore
     @ManyToOne(fetch= FetchType.LAZY)
     @NotBlank
+    @JoinColumn(name = "listing_id")
     private Listing listing;
 
     private String title;
@@ -33,8 +35,7 @@ public class Review {
 
     }
 
-    public Review(Integer id, @NotBlank Listing listing, String title, String content, Integer starValue, LocalDate date, String userFirstName) {
-        this.id = id;
+    public Review(@NotBlank Listing listing, String title, String content, Integer starValue, LocalDate date, String userFirstName) {
         this.listing = listing;
         this.title = title;
         this.content = content;

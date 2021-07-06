@@ -27,9 +27,9 @@ public class Location {
     private String state;
 
     @JsonIgnore
-    @OneToOne(mappedBy = "location")
+    @OneToOne(fetch = FetchType.LAZY,
+    mappedBy = "location")
     private Listing listing;
-
 
     @OneToMany(mappedBy="location", cascade=CascadeType.ALL)
     private List<AboutLocation> locationInfos;
@@ -86,7 +86,7 @@ public class Location {
     public void setState(String state) {
         this.state = state;
     }
-
+  
     public Listing getListing() {
         return listing;
     }

@@ -3,6 +3,7 @@ package com.talentpath.airTNB.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javassist.runtime.Desc;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import javax.validation.constraints.Digits;
@@ -22,8 +23,17 @@ public class Listing {
 
     private String subTitle;
 
+    private Integer freeCancellationDays;
+
+    private Integer cancellationRefundPercentage;
+
+    private Integer paidCancellationDays;
+    
+    private float price;
+    
     @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER,
+                cascade=CascadeType.ALL)
     @JoinColumn(name="host_id")
     private Host host;
 
@@ -31,20 +41,38 @@ public class Listing {
     private List<Review> reviews;
 
     @OneToMany(mappedBy = "listing", cascade = CascadeType.ALL)
-    @JsonIgnore
     private List<Photo>  photos;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "location_id", referencedColumnName = "id")
+    @OneToOne(cascade = CascadeType.ALL
+    )
     @NotBlank
     private Location location;
 
     @OneToMany(mappedBy = "listing", cascade = CascadeType.ALL)
-    @JsonIgnore
     private List<Room>  rooms;
-
+    
     @OneToOne(cascade = CascadeType.ALL)
     private Description description;
+
+    @OneToOne(mappedBy = "listing",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY)
+    private RuleList ruleList;
+
+    @OneToOne(mappedBy = "listing",
+    cascade = CascadeType.ALL,
+    fetch = FetchType.LAZY)
+    private HealthAndSafetyInfo healthAndSafetyInfo;
+    
+    public Listing(String title, String subTitle, Host host, List<Review> reviews, List<Photo> photos, Description description, float price){
+        this.title = title;
+        this.subTitle = subTitle;
+        this.host = host;
+        this.reviews = reviews;
+        this.photos = photos;
+        this.description = description;
+        this.price = price;
+    }
 
     public Listing(String title, String subTitle, Host host, List<Review> reviews, List<Photo> photos){
         this.title = title;
@@ -52,7 +80,6 @@ public class Listing {
         this.host = host;
         this.reviews = reviews;
         this.photos = photos;
-        this.description = description;
     }
 
     public Listing(){
@@ -60,6 +87,30 @@ public class Listing {
 
     public Integer getId() {
         return id;
+    }
+
+    public Integer getFreeCancellationDays() {
+        return freeCancellationDays;
+    }
+
+    public void setFreeCancellationDays(Integer freeCancellationDays) {
+        this.freeCancellationDays = freeCancellationDays;
+    }
+
+    public Integer getCancellationRefundPercentage() {
+        return cancellationRefundPercentage;
+    }
+
+    public void setCancellationRefundPercentage(Integer cancellationRefundPercentage) {
+        this.cancellationRefundPercentage = cancellationRefundPercentage;
+    }
+
+    public Integer getPaidCancellationDays() {
+        return paidCancellationDays;
+    }
+
+    public void setPaidCancellationDays(Integer paidCancellationDays) {
+        this.paidCancellationDays = paidCancellationDays;
     }
 
     public void setId(Integer id) {
@@ -121,10 +172,33 @@ public class Listing {
     public void setRooms(List<Room> rooms) {
         this.rooms = rooms;
     }
+
+    public RuleList getRuleList() {
+        return ruleList;
+    }
+
+    public void setRuleList(RuleList ruleList) {
+        this.ruleList = ruleList;
+    }
+
     public Description getDescription(){
         return description;
     }
     public void setDescription(Description description){
         this.description = description;
+    }
+    public float getPrice(){
+        return price;
+    }
+    public void setPrice(Float price){
+        this.price = price;
+    }
+
+    public HealthAndSafetyInfo getHealthAndSafetyInfo() {
+        return healthAndSafetyInfo;
+    }
+
+    public void setHealthAndSafetyInfo(HealthAndSafetyInfo healthAndSafetyInfo) {
+        this.healthAndSafetyInfo = healthAndSafetyInfo;
     }
 }
